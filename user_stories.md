@@ -13,3 +13,6 @@
 * I can search for a codebin
 * I can edit another user's codebin (without DB changes)
 
+# Plan
+1) Complete the front-end
+2) Complete the back-end
