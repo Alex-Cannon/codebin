@@ -1,5 +1,9 @@
-// Variable Overrides:
-$body-bg: #222;
-$body-color: #fff;
+@import '../../utils/var.scss';
 
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+.container-fluid {
+  min-height: 100vh;
+}
+
+.page-wrapper {
+  padding: 2em 1em;
+}

@@ -11,3 +11,6 @@
 #### Search
 * I can text search for Codebins 
 
+#### Bonus
+* I can share a codebin
+
