@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.scss';
-import './nav.scss';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import Nav from '../Nav/Nav.js';
+import Footer from '../Footer/Footer.js';
 
 const ROUTES = [{
   path: '/',
@@ -16,16 +17,17 @@ class App extends Component {
     return (
       <div className='container-fluid'>
         <div className='row'>
-          <nav className='col-sm-12 col-md-3 col-lg-2 navbar'>
-            Navbar
-          </nav>
-          <div className='col-sm-12 col-md-9 page-wrapper'>
+          <div className='col-sm-12 col-md-3 col-lg-2 navbar-container'>
+            <Nav/>
+          </div>
+          <div className='col-sm-12 col-md-9 col-lg-10 page-wrapper'>
             <Router>
               {ROUTES.map((route) => {
                 return (<Route exact {...route} />)
               })}
             </Router>
           </div>
+          <Footer/>
         </div>
       </div>
     );

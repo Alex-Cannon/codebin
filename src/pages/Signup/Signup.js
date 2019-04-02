@@ -27,7 +27,7 @@ class SignupForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+          <label for="exampleInputEmail1">Email</label>
           <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
@@ -35,7 +35,13 @@ class SignupForm extends React.Component {
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
         </div>
-        <input type="submit" class="btn btn-primary"/>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Confirm Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+        </div>
+        <input type="submit" class="btn btn-primary"/><br/><br/>
+        <p>Or, Login with a service below:</p>
+        <p>Google or Github</p>
       </form>
     );
   }
