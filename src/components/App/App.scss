@@ -6,8 +6,17 @@
 
 .page-wrapper {
   min-height: 100vh;
+  padding: 3em 2em;
 }
 
 .navbar-container {
   background: $gray-dark;
+}
+
+.card {
+  color: $gray-darker;
+}
+
+.btn {
+  margin-right: 5px;
 }

@@ -13,23 +13,23 @@ const ROUTES = [{
 }];
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <div className='container-fluid'>
-        <div className='row'>
-          <div className='col-sm-12 col-md-3 col-lg-2 navbar-container'>
-            <Nav/>
-          </div>
-          <div className='col-sm-12 col-md-9 col-lg-10 page-wrapper'>
-            <Router>
+      <Router>
+        <div className='container-fluid'>
+          <div className='row'>
+            <div className='col-sm-12 col-md-3 col-lg-2 navbar-container'>
+              <Nav/>
+            </div>
+            <div className='col-sm-12 col-md-9 col-lg-10 page-wrapper'>
               {ROUTES.map((route) => {
-                return (<Route exact {...route} />)
+                return (<Route exact {...route}  />)
               })}
-            </Router>
+            </div>
+            <Footer/>
           </div>
-          <Footer/>
         </div>
-      </div>
+      </Router>
     );
   }
 }

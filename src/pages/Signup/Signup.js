@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './signup.scss';
 
-export default class Signup extends React.Component {
+export default class Signup extends Component {
   render () {
     return (
       <div className='row justify-content-center align-items-center signup-page'>
@@ -18,7 +18,7 @@ export default class Signup extends React.Component {
   }
 }
 
-class SignupForm extends React.Component {
+class SignupForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
   }
