@@ -3,14 +3,7 @@ import './App.scss';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import Nav from '../Nav/Nav.js';
 import Footer from '../Footer/Footer.js';
-
-const ROUTES = [{
-  path: '/',
-  component: require('../../pages/Index/Index.js').default
-}, {
-  path: '/signup',
-  component: require('../../pages/Signup/Signup.js').default
-}];
+import ROUTES from './routes.js';
 
 class App extends Component {
   render () {
@@ -21,7 +14,7 @@ class App extends Component {
             <div className='col-sm-12 col-md-3 col-lg-2 navbar-container'>
               <Nav/>
             </div>
-            <div className='col-sm-12 col-md-9 col-lg-10 page-wrapper'>
+            <div className='col-sm-12 col-md-9 col-lg-10'>
               {ROUTES.map((route) => {
                 return (<Route exact {...route}  />)
               })}

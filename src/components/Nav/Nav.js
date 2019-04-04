@@ -12,7 +12,8 @@ export default class Nav extends Component {
         <p>Your</p>
         <button className="btn btn-light">Dashboard</button>
         <button className="btn btn-light">Profile</button>
-        <Link className="btn btn-light" to="/signup">Signup Today</Link>
+        <Link className="btn btn-light" to="/login">Login</Link>
+        <Link className="btn btn-light" to="/signup">Signup</Link>
         <p>Explore</p>
         <button className="btn btn-light">Pens</button>
       </nav>
