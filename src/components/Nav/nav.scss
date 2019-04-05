@@ -1,7 +1,6 @@
 @import '../../utils/var.scss';
 
 nav {
-  min-height: 100vh;
   .btn {
     display: block;
     width: 100%;
@@ -12,5 +11,8 @@ nav {
     &:hover {
       background: #ddd;
     }
+  }
+  @media screen and (min-width: 768px) {
+    min-height: 100vh;
   }
 }

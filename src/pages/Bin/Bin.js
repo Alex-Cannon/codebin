@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Bin extends Component {
   render () {
@@ -20,17 +21,17 @@ class Nav extends Component {
   render () {
     return (
       <ul className="nav justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Active</a>
+        <li className="nav-item">
+          <Link className="nav-link active" to="#">Active</Link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+        <li className="nav-item">
+          <Link className="nav-link" to="#">Link</Link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+        <li className="nav-item">
+          <Link className="nav-link" to="#">Link</Link>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <li className="nav-item">
+          <Link className="nav-link disabled" to="#" tabindex="-1" aria-disabled="true">Disabled</Link>
         </li>
       </ul>
     );

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import controller from '../../utils/controller.js';
+import { Link } from 'react-router-dom';
 import './login.scss';
 
 export default class Login extends Component {
@@ -9,6 +11,7 @@ export default class Login extends Component {
           <div className='card align-middle'>
             <div className='card-body text-dark'>
               <h1>Login</h1>
+              <p>Login with your email or a service below.</p>
               <LoginForm/>
             </div>
           </div>
@@ -19,24 +22,47 @@ export default class Login extends Component {
 }
 
 class LoginForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
+    controller.postUser(this.state, 
+      (res) => {
+
+      }, (err) => {
+
+      });
+  }
+
+  handleChange(e) {
+    let state = this.state;
+    state[e.target.name] = e.target.value;
+    this.setState(state);
   }
 
   render () {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputEmail1">Email</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+          <input type="email" className="form-control" placeholder="Enter email"/>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+          <input type="password" className="form-control" placeholder="Password"/>
         </div>
-        <input type="submit" class="btn btn-primary"/><br/><br/>
-        <p>Or, Login with a service below:</p>
-        <p>Google or Github</p>
+        <input type="submit" className="btn btn-primary btn-block"/><br/>
+        <div className="text-center">
+          <p>Login with a service below:</p>
+          <p>Google or Github</p>
+          <p>Don't have an account? <Link to="/signup">Signup here</Link>.</p>
+        </div>
       </form>
     );
   }
