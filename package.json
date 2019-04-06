@@ -4,7 +4,13 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
+    "dotenv": "^7.0.0",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.4.22",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
@@ -15,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "api": "nodemon --watch src/server src/server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

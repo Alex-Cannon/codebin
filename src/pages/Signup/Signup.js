@@ -11,7 +11,7 @@ export default class Signup extends Component {
           <div className='card align-middle'>
             <div className='card-body text-dark'>
               <h1>Signup Today!</h1>
-              <p>Signup with your email or use another service!</p>
+              <p>Signup with your email or another service!</p>
               <SignupForm/>
             </div>
           </div>
