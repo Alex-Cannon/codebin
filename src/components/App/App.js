@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from '../Nav/Nav.js';
 import Footer from '../Footer/Footer.js';
 import ROUTES from './routes.js';
@@ -15,9 +15,11 @@ class App extends Component {
               <Nav/>
             </div>
             <div className='col-sm-12 col-md-9 col-lg-10'>
-              {ROUTES.map((route) => {
-                return (<Route exact {...route}  />)
-              })}
+              <Switch>
+                {ROUTES.map((route) => {
+                  return (<Route exact {...route} key={route.path} />)
+                })}
+              </Switch>
             </div>
             <Footer/>
           </div>

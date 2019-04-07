@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import controller from '../../utils/controller.js';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './login.scss';
 
 export default class Login extends Component {
@@ -11,7 +11,7 @@ export default class Login extends Component {
           <div className='card align-middle'>
             <div className='card-body text-dark'>
               <h1>Login</h1>
-              <p>Login with your email or a service below.</p>
+              <p>Login with your username or a service below.</p>
               <LoginForm/>
             </div>
           </div>
@@ -25,14 +25,14 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: '',
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    controller.postUser(this.state, 
+    axios.post('/api/login', this.state, 
       (res) => {
 
       }, (err) => {
@@ -50,11 +50,11 @@ class LoginForm extends Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
         <div className="form-group">
-          <label for="exampleInputEmail1">Email</label>
+          <label>Email</label>
           <input type="email" className="form-control" placeholder="Enter email"/>
         </div>
         <div className="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <label>Password</label>
           <input type="password" className="form-control" placeholder="Password"/>
         </div>
         <input type="submit" className="btn btn-primary btn-block"/><br/>
