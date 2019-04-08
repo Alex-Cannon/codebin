@@ -8,7 +8,6 @@ const startup = function () {
   passport.use(new LocalStrategy(
     function(username, password, done) {
       User.findOne({ username }, function (err, user) {
-        console.log('authenticating?');
         if (err) { return done(err); }
         if (!user) { return done(null, false); }
         if (bcrypt.compareSync(password, user.password)) { return done(null, user); }
@@ -19,13 +18,11 @@ const startup = function () {
 
   // _id stored in session
   passport.serializeUser(function (user, done) {
-    console.log('hit');
     done(null, user._id);
   });
 
   // user fetched from _id in session
   passport.deserializeUser(function (_id, done) {
-    console.log('deserializing');
     User.findById(_id, function (err, user) {
       done(err, user);
     });

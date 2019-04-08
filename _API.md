@@ -3,7 +3,7 @@
 ## LOGIN
 ### POST /signup
 ### POST /signin
-### POST (Auth) /signout
+### GET (Auth) /signout
 
 ## USER
 ### GET (Auth) /:USER
