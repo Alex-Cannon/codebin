@@ -5,8 +5,8 @@ module.exports = [{
   path: '/signup',
   component: require('../../pages/Signup/Signup.js').default
 }, {
-  path: '/login',
-  component: require('../../pages/Login/Login.js').default
+  path: '/signin',
+  component: require('../../pages/Signin/Signin.js').default
 }, {
   path: '/:USER_NAME/dashboard',
   component: require('../../pages/Dashboard/Dashboard.js').default

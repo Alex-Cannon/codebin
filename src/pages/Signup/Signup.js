@@ -73,9 +73,9 @@ class SignupForm extends Component {
         </div>
         <input type="submit" className="btn btn-primary btn-block"/><br/>
         <div className="text-center">
-          <p>Login with a service below:</p>
+          <p>signin with a service below:</p>
           <p>Google or Github</p>
-          <p>Already have an account? <Link to="/login">Login here</Link>.</p>
+          <p>Already have an account? <Link to="/signin">signin here</Link>.</p>
         </div>
       </form>
     );

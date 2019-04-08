@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './login.scss';
+import './signin.scss';
 
-export default class Login extends Component {
+export default class Signin extends Component {
   render () {
     return (
-      <div className='row justify-content-center align-items-center login-page'>
+      <div className='row justify-content-center align-items-center signin-page'>
         <div className='col-sm-12 col-md-10 col-lg-6'>
           <div className='card align-middle'>
             <div className='card-body text-dark'>
-              <h1>Login</h1>
-              <p>Login with your username or a service below.</p>
-              <LoginForm/>
+              <h1>Signin</h1>
+              <p>Signin with your username or a service below.</p>
+              <SigninForm/>
             </div>
           </div>
         </div>
@@ -21,7 +21,7 @@ export default class Login extends Component {
   }
 }
 
-class LoginForm extends Component {
+class SigninForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +32,7 @@ class LoginForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('/api/login', this.state, 
+    axios.post('/api/signin', this.state, 
       (res) => {
 
       }, (err) => {
@@ -59,7 +59,7 @@ class LoginForm extends Component {
         </div>
         <input type="submit" className="btn btn-primary btn-block"/><br/>
         <div className="text-center">
-          <p>Login with a service below:</p>
+          <p>Signin with a service below:</p>
           <p>Google or Github</p>
           <p>Don't have an account? <Link to="/signup">Signup here</Link>.</p>
         </div>

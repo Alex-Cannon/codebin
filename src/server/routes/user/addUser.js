@@ -8,7 +8,8 @@ router.post('/adduser', function (req, res) {
       User.create(req.body, (err, doc) => {
         if (err) { return res.status(500).json(err); }
         console.log('user added');
-        return res.json(doc);
+        var { _id, username, bins } = doc;
+        return res.json({ _id, username});
       });
     } else {
       return res.status(400).send('Username is Taken. Please use a different username.');
