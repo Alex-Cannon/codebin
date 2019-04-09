@@ -1,4 +1,4 @@
-@import '../../utils/var.scss';
+@import '../../utils/_variables.scss';
 
 nav {
   .btn {
@@ -7,7 +7,6 @@ nav {
     margin-bottom: 0.5em;
     text-align: left;
     font-weight: bold;
-    color: $gray;
     &:hover {
       background: #ddd;
     }

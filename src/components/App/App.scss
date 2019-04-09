@@ -1,17 +1,14 @@
-@import '../../utils/var.scss';
+@import '../../utils/bootstrap.min.css';
+@import '../../utils/_variables.scss';
 
 .container-fluid {
   min-height: 100vh;
 }
 
-
-
 .navbar-container {
-  background: $gray-dark;
 }
 
 .card {
-  color: $gray-darker;
 }
 
 .btn {
