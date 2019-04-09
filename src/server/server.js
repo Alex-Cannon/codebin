@@ -5,6 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const passport = require('passport');
 
 // Constants
 let app = express();
@@ -23,7 +24,9 @@ mongoose.connection.on('open', () => {
     resave: false,
     saveUninitialized: false
   }));
-  require('./utils/setupPassport.js').setup(app);
+  app.use(passport.initialize());
+  app.use(passport.session());
+  require('./utils/setupPassport.js');
 
   // Serve RESTful API
   app.use('/api', require('./routes/api.js'));

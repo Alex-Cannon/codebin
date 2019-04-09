@@ -3,10 +3,10 @@ var passport = require('passport');
 
 router.post('/signin',
   passport.authenticate('local'),
-  function (req, res, next) {
-    console.log('local auth worked');
+  function (req, res) {
     const { username } = req.user;
-    res.json({ username });
+    console.log(username);
+    return res.json({ username });
   });
 
 module.exports = router;

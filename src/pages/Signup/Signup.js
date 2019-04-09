@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './signup.scss';
 import axios from 'axios';
+import AlertBox from '../../components/AlertBox/AlertBox.js';
 
 export default class Signup extends Component {
   render () {
@@ -56,8 +57,8 @@ class SignupForm extends Component {
   render () {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
-        <h1>Signup Today!</h1>
-        <p>Signup with your username or another service!</p>
+        <h1>Sign Up Today!</h1>
+        <p>Sign Up with a username or another service!</p>
         <AlertBox message={this.state.message} type={this.state.type} close={this.close.bind(this)}/>
         <div className="form-group">
           <label>Username</label>
@@ -73,28 +74,12 @@ class SignupForm extends Component {
         </div>
         <input type="submit" className="btn btn-primary btn-block"/><br/>
         <div className="text-center">
-          <p>signin with a service below:</p>
+          <p>Sign Up with a service below:</p>
           <p>Google or Github</p>
-          <p>Already have an account? <Link to="/signin">signin here</Link>.</p>
+          <p>Already have an account? <Link to="/signin">Sign In here</Link>.</p>
         </div>
       </form>
     );
   }
 }
 
-class AlertBox extends Component {
-  render () {
-    if (!this.props.message || this.props.message === '') {
-      return '';
-    }
-
-    return (
-      <div className={"alert alert-dismissible fade show " + this.props.type} role="alert">
-        {this.props.message}
-        <button type="button" className="close" data-dismiss="alert" onClick={this.props.close.bind(this)} aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    );
-  }
-}

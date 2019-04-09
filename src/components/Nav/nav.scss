@@ -1,15 +1,9 @@
 @import '../../utils/_variables.scss';
 
 nav {
-  .btn {
-    display: block;
-    width: 100%;
-    margin-bottom: 0.5em;
-    text-align: left;
-    font-weight: bold;
-    &:hover {
-      background: #ddd;
-    }
+  padding: 10px 0;
+  p {
+    margin: 15px 0;
   }
   @media screen and (min-width: 768px) {
     min-height: 100vh;

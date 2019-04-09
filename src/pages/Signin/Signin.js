@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import history from '../../utils/history.js';
 import axios from 'axios';
+import AlertBox from '../../components/AlertBox/AlertBox.js';
 import './signin.scss';
 
 export default class Signin extends Component {
@@ -10,9 +12,9 @@ export default class Signin extends Component {
         <div className='col-sm-12 col-md-10 col-lg-6'>
           <div className='card align-middle'>
             <div className='card-body text-dark'>
-              <h1>Signin</h1>
-              <p>Signin with your username or a service below.</p>
-              <SigninForm/>
+              <h1>Sign In</h1>
+              <p>Sign In with your username or a service below.</p>
+              <SigninForm {...this.props}/>
             </div>
           </div>
         </div>
@@ -27,16 +29,24 @@ class SigninForm extends Component {
     this.state = {
       username: '',
       password: '',
+      status: 0,
+      type: '',
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('/api/signin', this.state, 
-      (res) => {
-
-      }, (err) => {
-
+    const { username, password } = this.state;
+    axios.post('/api/signin', { username, password })
+      .then((res) => {
+        this.props.set({user: res.data});
+        history.push('/' + res.data.username + '/dashboard');
+      })
+      .catch((err) => {
+        this.setState({
+          status: err.response ? err.response.status : '',
+          type: 'alert-danger'
+        })
       });
   }
 
@@ -46,22 +56,28 @@ class SigninForm extends Component {
     this.setState(state);
   }
 
+  close() {
+    this.setState({message: '', status: ''});
+  }
+
   render () {
+
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
+        <AlertBox status={this.state.status} type={this.state.type} close={this.close.bind(this)} />
         <div className="form-group">
-          <label>Email</label>
-          <input type="email" className="form-control" placeholder="Enter email"/>
+          <label>Username</label>
+          <input type="text" className="form-control" name="username" onChange={this.handleChange.bind(this)} placeholder="Enter Username"/>
         </div>
         <div className="form-group">
           <label>Password</label>
-          <input type="password" className="form-control" placeholder="Password"/>
+          <input type="password" className="form-control" name="password" onChange={this.handleChange.bind(this)} placeholder="Enter Password"/>
         </div>
         <input type="submit" className="btn btn-primary btn-block"/><br/>
         <div className="text-center">
-          <p>Signin with a service below:</p>
+          <p>Sign In with a service below:</p>
           <p>Google or Github</p>
-          <p>Don't have an account? <Link to="/signup">Signup here</Link>.</p>
+          <p>Don't have an account? <Link to="/signup">Sign Up here</Link>.</p>
         </div>
       </form>
     );
