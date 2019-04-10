@@ -22,11 +22,11 @@ export default class Nav extends Component {
       <nav>
         <h2><Link className="text-dark" to='/'>CodeBin</Link></h2>
         <p>Create</p>
-        <button className="btn btn-primary btn-block">New Bin</button>
+        <Link className="btn btn-primary btn-block" to={'/bin/new'}>New Bin</Link>
         {username ? (
           <>
             <p>Your</p>
-            <Link className="btn btn-primary btn-block" to={'/' + username + '/dashboard' }>Dashboard</Link>
+            <Link className="btn btn-primary btn-block" to={'/' + username + '/dashboard'}>Dashboard</Link>
             <Link className="btn btn-primary btn-block" to={'/' + username + '/settings'}>Settings</Link>
             <button className="btn btn-primary btn-block" onClick={this.logout.bind(this)}>Sign Out</button>
           </>

@@ -1,0 +1,11 @@
+@import '../../utils/variables.scss';
+
+#editor {
+  textarea {
+    height: 100%;
+    width: 100%;
+    display: block;
+    background: $gray-700;
+    border: 0;
+  }
+}

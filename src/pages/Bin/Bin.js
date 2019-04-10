@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './Bin.scss';
 
 export default class Bin extends Component {
   render () {
     return (
-      <div>
-        <Nav/>
-        <div>
-          I'm the editor
+      <div className="row">
+        <div className="col">
+          <Editor/>
         </div>
-        <div id="embed">
-          I'm the embeded Content!
-        </div>
+      </div>
+    );
+  }
+}
+
+class Editor extends Component {
+  render () {
+    return (
+      <div id="editor">
+        <textarea></textarea>
+        <textarea></textarea>
+        <textarea></textarea>
       </div>
     );
   }
@@ -31,7 +40,7 @@ class Nav extends Component {
           <Link className="nav-link" to="#">Link</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link disabled" to="#" tabindex="-1" aria-disabled="true">Disabled</Link>
+          <Link className="nav-link" to="#" tabindex="-1" aria-disabled="true">Disabled</Link>
         </li>
       </ul>
     );
