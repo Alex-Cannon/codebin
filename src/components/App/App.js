@@ -37,6 +37,9 @@ class App extends Component {
               <Nav {...this.state} set={this.set.bind(this)}/>
             </div>
             <div className='col-sm-12 col-md-9 col-lg-10 page-wrapper'>
+              <div style={{height: '50px', padding: '10px'}}>
+                I'm a searchbar! And a face for navigation!
+              </div>
               <Switch>
                 {ROUTES.map((route) => {
                   var C = route.component;

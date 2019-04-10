@@ -20,7 +20,7 @@ export default class Nav extends Component {
     const username = this.props.user.username;
     return (
       <nav>
-        <h1><Link className="text-dark" to='/'>CodeBin</Link></h1>
+        <h2><Link className="text-dark" to='/'>CodeBin</Link></h2>
         <p>Create</p>
         <button className="btn btn-primary btn-block">New Bin</button>
         {username ? (
