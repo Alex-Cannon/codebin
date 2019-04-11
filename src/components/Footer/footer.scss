@@ -1,6 +1,10 @@
 @import '../../utils/_variables.scss';
 
 footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
   padding: 4em 0;
-  align-items: center;
+  border-top: 2px solid $gray-700;
 }

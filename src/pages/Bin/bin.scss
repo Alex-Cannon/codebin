@@ -1,11 +1,62 @@
 @import '../../utils/variables.scss';
 
-#editor {
-  textarea {
-    height: 100%;
-    width: 100%;
-    display: block;
-    background: $gray-700;
-    border: 0;
+.bin-container {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+}
+
+.editor-panel {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100vh;
+  border-right: 10px solid $gray-700;
+}
+
+.editor-header {
+  display: flex;
+  background: $gray-800;
+  .tab {
+    flex: 1;
+    width: 100px;
+    height: 50px;
+    margin: 0;
+    border-radius: 0;
+    border: 0 !important;
+    box-shadow: none;
   }
+  .active {
+    background: $gray-800 !important;
+  }
+}
+
+.editor-content {
+  display: flex;
+  height: 100%;
+  background: $gray-800;
+  color: $white;
+}
+
+.editor-line-nums {
+  height: 100%;
+  width: 25px;
+  text-align: center;
+  background: $gray-900;
+  color: #fff;
+}
+
+.editor-textarea {
+  width: 100%;
+  height: 100%;
+  background: $gray-800;
+  padding: 10px;
+  border: 0;
+  color: $white;
+  white-space: nowrap;
+  outline: none;
+}
+
+.view {
+  width: 50%;
 }
