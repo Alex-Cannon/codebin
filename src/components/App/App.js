@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from '../../utils/history.js';
-import Nav from '../Nav/Nav.js';
-import Footer from '../Footer/Footer.js';
 import ROUTES from './routes.js';
 import axios from 'axios';
 import './App.scss';
@@ -23,7 +21,6 @@ class App extends Component {
   componentWillMount() {
     axios.get('/api/user')
       .then((res) => {
-        console.log('got user: ' + res.data);
         this.setState({user: res.data});
       });
   }
@@ -40,7 +37,6 @@ class App extends Component {
             return (<Route exact {...route} key={route.path || '404'}  />)
           })}
         </Switch>
-        <Footer/>
       </Router>
     );
   }

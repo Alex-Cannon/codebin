@@ -12,6 +12,9 @@ router.use(postUser);
 router.use(signin);
 router.use(signout);
 router.use(getUser);
+router.get('/getbin', function (req, res) {
+  return res.send('<!DOCTYPE html><html><body>I am embedded!</body></html>');
+});
 // SEARCH
 
 module.exports = router;

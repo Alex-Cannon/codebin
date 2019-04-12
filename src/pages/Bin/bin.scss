@@ -2,19 +2,48 @@
 
 .bin-container {
   display: flex;
+  width: 100%;
   height: 100vh;
   margin: 0;
+  overflow: hidden;
+}
+
+.iframe-container {
+  all: unset;
+  flex: 1;
+  position: relative;
+  background: white;
+  height: 100vh;
+  min-width: 100px;
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  z-index: 1;
+}
+
+.editor-panel-container {
+  display: flex;
+  height: 50vh;
+  min-width: 100px;
+  @media screen and (min-width: $screen-sm) {
+    height: 100vh;
+  }
 }
 
 .editor-panel {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  height: 100vh;
-  border-right: 10px solid $gray-700;
+  height: 50vh;
+  width: 100%;
+  @media screen and (min-width: $screen-sm) {
+    height: 100vh;
+  }
 }
 
-.editor-header {
+.editor-tabs {
   display: flex;
   background: $gray-800;
   .tab {
@@ -39,11 +68,21 @@
 }
 
 .editor-line-nums {
+  position: relative;
   height: 100%;
-  width: 25px;
+  width: 30px;
   text-align: center;
-  background: $gray-900;
+  border-right: 2px solid lighten($gray-800, 3%);
   color: #fff;
+  overflow: hidden;
+}
+
+.editor-line-nums-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  text-align: center;
 }
 
 .editor-textarea {
@@ -54,9 +93,37 @@
   border: 0;
   color: $white;
   white-space: nowrap;
+  word-spacing: 0.3em;
   outline: none;
+  resize: none;
 }
 
-.view {
-  width: 50%;
+.editor-draggable {
+  min-width: 12px !important;
+  height: 100vh;
+  background: $gray-700;
+  &:hover, :active, :focus {
+    cursor: e-resize;
+    animation: flash 2s infinite;
+  }
+}
+
+.dragging {
+  animation: flash 2s infinite;
+}
+
+@keyframes flash {
+  0% { background: $gray-700 }
+  50% { background: $gray-600 }
+  100% { background: $gray-700 }
+}
+
+.iframe-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0);
 }

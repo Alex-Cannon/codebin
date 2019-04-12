@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Nav from '../Nav/Nav.js';
+import Footer from '../../components/Footer/Footer.js';
 
 export default class NavWrap extends Component {
   render () {
@@ -11,6 +12,7 @@ export default class NavWrap extends Component {
             {this.props.children}
           </div>
         </div>
+        <Footer/>
       </div>
     );
   }
