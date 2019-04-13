@@ -1,11 +1,18 @@
 @import '../../utils/variables.scss';
 
+.page-bin-wrapper {
+  height: 100vh;
+}
+
 .bin-container {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100vh;
   margin: 0;
-  overflow: hidden;
+  @media screen and (min-width: $screen-sm) {
+    flex-direction: row;
+  }
 }
 
 .iframe-container {
@@ -26,9 +33,11 @@
 
 .editor-panel-container {
   display: flex;
+  width: 100%;
   height: 50vh;
-  min-width: 100px;
   @media screen and (min-width: $screen-sm) {
+    min-width: 350px;
+    max-width: 100vw;
     height: 100vh;
   }
 }
@@ -99,6 +108,7 @@
 }
 
 .editor-draggable {
+  flex: 1;
   min-width: 12px !important;
   height: 100vh;
   background: $gray-700;

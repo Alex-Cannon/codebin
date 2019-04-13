@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavTop from '../../components/NavTop/NavTop.js';
 import './Bin.scss';
 
 export default class Bin extends Component {
@@ -50,22 +51,35 @@ export default class Bin extends Component {
 
   render () {
     return (
-      <div className="bin-container">
-        <Editor
-          {...this.state}
-          changeTab={this.changeTab.bind(this)}
-          editorTextarea={this.editorTextarea}
-          handleChange={this.handleChange.bind(this)}
-          handleKeyDown={this.handleKeyDown.bind(this)}
-          handleScroll={this.handleScroll.bind(this)}
-          set={this.set.bind(this)}
-        />
-        <View dragging={this.state.dragging}/>
+      <div className='page-bin-wrapper'>
+        <NavTop/>
+        <div className="bin-container">
+          <Editor
+            {...this.state}
+            changeTab={this.changeTab.bind(this)}
+            editorTextarea={this.editorTextarea}
+            handleChange={this.handleChange.bind(this)}
+            handleKeyDown={this.handleKeyDown.bind(this)}
+            handleScroll={this.handleScroll.bind(this)}
+            set={this.set.bind(this)}
+          />
+          <View dragging={this.state.dragging}/>
+        </div>
       </div>
     );
   }
 }
 
+class BinNav extends Component {
+  render () {
+    return (
+      <div>
+
+      </div>
+    );
+  }
+}
+  
 class Editor extends Component {
   constructor(props) {
     super(props);
@@ -104,7 +118,6 @@ class Editor extends Component {
 
   updateDrag(e) {
     if (this.props.dragging) {
-      console.log('UPDATE: ' + e.clientX);
       this.setState({ width: e.clientX < window.innerWidth ? e.clientX : window.innerWidth });
     }
   }
@@ -112,6 +125,9 @@ class Editor extends Component {
   componentDidMount() {
     window.addEventListener('mouseup', this.stopDrag.bind(this));
     window.addEventListener('mousemove', this.updateDrag.bind(this));
+    window.addEventListener('resize', (e) => {
+      this.props.set({ width: (e.clientX < window.innerWidth ? e.clientX : window.innerWidth) });
+    });
   }
 
   componentWillUnmount() {
