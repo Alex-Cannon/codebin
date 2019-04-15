@@ -6,7 +6,6 @@ const signin = require('./user/signin.js');
 const signout = require('./user/signout.js');
 const getUser = require('./user/getUser.js');
 
-const postBin = require('./bin/postBin.js');
 const getBin = require('./bin/getBin.js');
 const getBinPage = require('./bin/getBinPage.js');
 const putBin = require('./bin/putBin.js');

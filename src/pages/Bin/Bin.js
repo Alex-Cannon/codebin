@@ -29,21 +29,26 @@ export default class Bin extends Component {
 
   handleSave() {
     const { _id, name, html, css, js } = this.state;
-    axios.put('/api/bin', { _id, name, html, css, js  })
+    if (this.state._id === 'new' && !this.props.user.username) {
+      this.props.set({ anonBin: { _id, name, html, css, js }});
+      history.push('/signin?save=true&redirect=/bin/' + _id);
+    } else {
+      axios.put('/api/bin', { _id, name, html, css, js  })
       .then((res) => {
         if (this.state._id === 'new') {
           this.setState({ _id: res.data._id }, () => {
-            history.push(res.data._id);
+            history.push('/bin/' + res.data._id);
             this.refreshIframe();
           });
         } else {
           this.refreshIframe();
         }
-
       })
       .catch((err) => {
         alert(err);
       });
+    }
+
   }
 
   refreshIframe() {
@@ -90,8 +95,8 @@ export default class Bin extends Component {
 
   render () {
     return (
-      <div className='page-bin-wrapper'>
-        <BinNav handleSave={this.handleSave.bind(this)}/>
+      <div className='page-bin-wrapper' style={{cursor: this.state.dragging ? 'e-resize' : 'default'}}>
+        <BinNav {...this.props} handleSave={this.handleSave.bind(this)}/>
         <div className="bin-container">
           <Editor
             {...this.state}
@@ -114,7 +119,7 @@ class BinNav extends Component {
     return (
       <div className="bin-nav">
         <button className="btn btn-secondary">Bin Details</button>
-        <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>Save Bin</button>
+        <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>{this.props.user.username ? 'Save Bin' : 'Sign Up & Save Bin'}</button>
         <button className="btn btn-secondary">Profile Pic</button>
       </div>
     );

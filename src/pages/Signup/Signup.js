@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import history from '../../utils/history.js';
 import './signup.scss';
 import axios from 'axios';
 import AlertBox from '../../components/AlertBox/AlertBox.js';
+import NavWrap from '../../components/NavWrap/NavWrap.js';
 
 export default class Signup extends Component {
   render () {
     return (
-      <div className='row justify-content-center align-items-center signup-page'>
-        <div className='col-sm-12 col-md-10 col-lg-6'>
-          <div className='card align-middle'>
-            <div className='card-body text-dark'>
-              <SignupForm/>
+      <NavWrap {...this.props}>
+        <br/><br/>
+        <div className='row justify-content-center align-items-center signup-page'>
+          <div className='col-sm-12 col-md-10 col-lg-6'>
+            <div className='card align-middle'>
+              <div className='card-body text-dark'>
+                <SignupForm/>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </NavWrap>
     );
   }
 }
@@ -52,6 +57,15 @@ class SignupForm extends Component {
     let state = this.state;
     state[e.target.name] = e.target.value;
     this.setState(state);
+  }
+
+  queryToObject() {
+    let query = history.location.search.substr(1).split('');
+    let key = '';
+    let val = '';
+    let elemCount = 1;
+    let obj = {};
+    return obj;
   }
 
   render () {

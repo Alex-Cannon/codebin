@@ -5,7 +5,7 @@ const { Bin } = require('../../utils/schema.js');
 router.get('/bin/page/:ID', function (req, res) {
   const _id = req.params.ID;
   if (_id === 'new') {
-    return res.send("I'm a new code bin!");
+    return res.send('');
   }
 
   Bin.findOne({ _id: new ObjectID(_id) }, (err, doc) => {
