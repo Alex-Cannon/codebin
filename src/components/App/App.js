@@ -34,7 +34,7 @@ class App extends Component {
             route.component = () => {
               return <C {...this.state} set={this.set.bind(this)}/>;
             };
-            return (<Route exact {...route} key={route.path || '404'}  />)
+            return (<Route exact {...route} key={route.path || '404'}  />);
           })}
         </Switch>
       </Router>

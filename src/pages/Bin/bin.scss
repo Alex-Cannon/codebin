@@ -2,6 +2,7 @@
 
 .page-bin-wrapper {
   height: 100vh;
+  overflow: hidden;
 }
 
 .bin-nav {
@@ -11,10 +12,16 @@
   button {
     width: 100%;
     max-width: 200px;
+    &:focus {
+      box-shadow: 0;
+      outline: 0;
+      border: 0;
+    }
   }
 }
 
 .bin-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -27,11 +34,10 @@
 
 .iframe-container {
   all: unset;
-  flex: 1;
   position: relative;
   background: white;
   height: 100vh;
-  min-width: 100px;
+  min-width: 125px;
 }
 
 .iframe {
@@ -46,7 +52,7 @@
   width: 100%;
   height: 50vh;
   @media screen and (min-width: $screen-sm) {
-    min-width: 350px;
+    min-width: 200px;
     max-width: 100vw;
     height: 100vh;
   }
@@ -67,14 +73,16 @@
   background: $gray-800;
   .tab {
     flex: 1;
-    width: 100px;
-    height: 50px;
+    width: 100%;
+    height: 40px;
     margin: 0;
     border-radius: 0;
-    border: 0 !important;
-    box-shadow: none;
+    border: 0;
+    &:focus {
+      outline: none;
+    }
   }
-  .active {
+  .active-btn {
     background: $gray-800 !important;
   }
 }
@@ -87,6 +95,7 @@
 }
 
 .editor-line-nums {
+  flex-shrink: 0;
   position: relative;
   height: 100%;
   width: 30px;

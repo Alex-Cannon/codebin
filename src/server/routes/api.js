@@ -8,6 +8,7 @@ const getUser = require('./user/getUser.js');
 
 const postBin = require('./bin/postBin.js');
 const getBin = require('./bin/getBin.js');
+const getBinPage = require('./bin/getBinPage.js');
 const putBin = require('./bin/putBin.js');
 
 // API Endpoints
@@ -18,6 +19,7 @@ router.use(signout);
 router.use(getUser);
 router.use(putBin);
 router.use(getBin);
+router.use(getBinPage);
 router.get('/getbin', function (req, res) {
   return res.send('<!DOCTYPE html><html><body>I am embedded!</body></html>');
 });
