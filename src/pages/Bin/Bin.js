@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import NavTop from '../../components/NavTop/NavTop.js';
+import history from '../../utils/history.js';
+import axios from 'axios';
 import './Bin.scss';
 
 export default class Bin extends Component {
@@ -7,6 +8,8 @@ export default class Bin extends Component {
     super(props);
 
     this.state = {
+      _id: history.location.pathname.substr(history.location.pathname.lastIndexOf('/') + 1),
+      name: 'New Bin',
       html: 'Type HTML here!',
       css: 'Type CSS here!',
       js: 'Type JS here!',
@@ -19,6 +22,17 @@ export default class Bin extends Component {
 
   changeTab(tab) {
     this.setState({target: tab});
+  }
+
+  handleSave() {
+    const { _id, name, html, css, js } = this.state;
+    axios.put('/api/bin', { _id, name, html, css, js  })
+      .then((res) => {
+        alert(JSON.stringify(res.data));
+      })
+      .catch((err) => {
+        alert(err);
+      });
   }
 
   handleChange(e) {
@@ -49,10 +63,19 @@ export default class Bin extends Component {
     this.setState(obj);
   }
 
+  componentWillMount() {
+    const _id = '5cb3e6a67c20b5129079e66c';
+    axios.get('/api/bin/' + _id)
+      .then((res) => {
+        const { name, html, css, js } = res.data;
+        this.setState({ name, html, css, js });
+      });
+  }
+
   render () {
     return (
       <div className='page-bin-wrapper'>
-        <NavTop/>
+        <BinNav handleSave={this.handleSave.bind(this)}/>
         <div className="bin-container">
           <Editor
             {...this.state}
@@ -73,8 +96,9 @@ export default class Bin extends Component {
 class BinNav extends Component {
   render () {
     return (
-      <div>
-
+      <div className="bin-nav">
+        <button className="btn btn-outline-success" onClick={this.props.handleSave.bind(this)}>Save Bin</button>
+        <button className="btn btn-outline-dark">Profile Pic</button>
       </div>
     );
   }

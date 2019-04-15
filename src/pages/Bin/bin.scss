@@ -4,6 +4,16 @@
   height: 100vh;
 }
 
+.bin-nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+  button {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
 .bin-container {
   display: flex;
   flex-direction: column;
