@@ -15,7 +15,7 @@ export default class Signup extends Component {
           <div className='col-sm-12 col-md-10 col-lg-6'>
             <div className='card align-middle'>
               <div className='card-body text-dark'>
-                <SignupForm/>
+                <SignupForm {...this.props}/>
               </div>
             </div>
           </div>
@@ -33,8 +33,10 @@ class SignupForm extends Component {
       password: '',
       confirmPassword: '',
       message: '',
-      type: ''
+      type: '',
+      query: this.queryToObject()
     }
+    alert(JSON.stringify(this.props.anonBin));
   }
 
   close() {
@@ -45,12 +47,24 @@ class SignupForm extends Component {
     e.preventDefault();
     const { username, password } = this.state;
     this.close();
-    axios.post('/api/adduser', { username, password })
+    if (this.state.query.signupandsave) {
+      // Signup and save a new bin.
+      axios.post('/api/signupandsave', { user: { username, password }, bin: this.props.anonBin })
       .then((res) => {
-        this.setState({message: 'Account added!', type: 'alert-success'});
+        this.props.set({user: { username: res.data.username }});
+        history.push(res.data.redirect);
       }).catch((err) => {
         this.setState({message: err.response.data, type: 'alert-danger'});
       });
+    } else {
+      // Signup
+      axios.post('/api/signup', { username, password })
+        .then((res) => {
+          this.setState({message: 'Account added!', type: 'alert-success'});
+        }).catch((err) => {
+          this.setState({message: err.response.data, type: 'alert-danger'});
+        });
+    }
   }
 
   handleChange(e) {
@@ -60,11 +74,19 @@ class SignupForm extends Component {
   }
 
   queryToObject() {
-    let query = history.location.search.substr(1).split('');
-    let key = '';
-    let val = '';
-    let elemCount = 1;
+    let query = history.location.search.substr(1);
     let obj = {};
+    let indexOf = query.indexOf('=');
+    while (indexOf !== -1) {
+      if (query.indexOf('&') !== -1) {
+        obj[query.substring(0, indexOf)] = query.substring(indexOf + 1, query.indexOf('&'));
+        query = query.substring(query.indexOf('&') + 1);
+      } else {
+        obj[query.substring(0, indexOf)] = query.substring(indexOf + 1);
+        query = '';
+      }
+      indexOf = query.indexOf('=');
+    }
     return obj;
   }
 

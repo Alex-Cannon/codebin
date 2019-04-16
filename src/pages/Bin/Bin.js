@@ -29,9 +29,9 @@ export default class Bin extends Component {
 
   handleSave() {
     const { _id, name, html, css, js } = this.state;
-    if (this.state._id === 'new' && !this.props.user.username) {
+    if (!this.props.user.username) {
       this.props.set({ anonBin: { _id, name, html, css, js }});
-      history.push('/signin?save=true&redirect=/bin/' + _id);
+      history.push('/signup?signupandsave=true');
     } else {
       axios.put('/api/bin', { _id, name, html, css, js  })
       .then((res) => {
@@ -86,11 +86,13 @@ export default class Bin extends Component {
 
   componentDidMount() {
     const _id = this.state._id;
-    axios.get('/api/bin/' + _id)
+    if (_id !== 'new') {
+      axios.get('/api/bin/' + _id)
       .then((res) => {
         const { name, html, css, js } = res.data;
         this.setState({ name, html, css, js });
       });
+    }
   }
 
   render () {

@@ -28,9 +28,9 @@ UserSchema.pre('save', function(next) {
 
 var BinSchema = new Schema({
   name: { required: true, type: String },
-  html: { required: true, type: String }, // Sanatize!
-  css: { required: true, type: String }, // Sanatize!
-  js: { required: true, type: String } // Sanatize!
+  html: { type: String }, // Sanatize!
+  css: { type: String }, // Sanatize!
+  js: { type: String } // Sanatize!
 }, { collection: 'bins' });
 
 module.exports = {
