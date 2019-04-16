@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../components/BinThumb/BinThumb.js';
 import './dashboard.scss';
+import { Link } from 'react-router-dom';
 
 export default class Dashboard extends Component {
   render () {
@@ -11,6 +12,7 @@ export default class Dashboard extends Component {
           <div className="card">
             <div className="card-body">
               Hi {this.props.user.username}! I'm your dashboard.
+              <Link to="/">Home</Link>
             </div>
           </div>
          </div>

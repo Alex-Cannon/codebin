@@ -1,7 +1,7 @@
 # User Stories
 
 #### User
-* I can signup/login/logout with my email, Google, or Github.
+* I can signup/login/logout with my DONE email, Google, or Github.
 * I can CRUD my account
 
 #### Codebin
