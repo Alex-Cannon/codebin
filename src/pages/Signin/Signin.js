@@ -3,22 +3,26 @@ import { Link } from 'react-router-dom';
 import history from '../../utils/history.js';
 import axios from 'axios';
 import AlertBox from '../../components/AlertBox/AlertBox.js';
+import NavWrap from '../../components/NavWrap/NavWrap.js';
 import './signin.scss';
 
 export default class Signin extends Component {
   render () {
     return (
-      <div className='row justify-content-center align-items-center signin-page'>
-        <div className='col-sm-12 col-md-10 col-lg-6'>
-          <div className='card align-middle'>
-            <div className='card-body text-dark'>
-              <h1>Sign In</h1>
-              <p>Sign In with your username or a service below.</p>
-              <SigninForm {...this.props}/>
+      <NavWrap {...this.props}>
+        <br/><br/>
+        <div className='row justify-content-center align-items-center signin-page'>
+          <div className='col-sm-12 col-md-10 col-lg-6'>
+            <div className='card align-middle'>
+              <div className='card-body text-dark'>
+                <h1>Sign In</h1>
+                <p>Sign In with your username or a service below.</p>
+                <SigninForm {...this.props}/>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </NavWrap>
     );
   }
 }

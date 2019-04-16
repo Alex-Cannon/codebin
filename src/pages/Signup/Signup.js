@@ -36,7 +36,6 @@ class SignupForm extends Component {
       type: '',
       query: this.queryToObject()
     }
-    alert(JSON.stringify(this.props.anonBin));
   }
 
   close() {

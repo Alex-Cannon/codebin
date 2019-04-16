@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import history from '../../utils/history.js';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Editor from './Editor.js';
 import './Bin.scss';
+import logo from '../../assets/icons/codebin_logo_transparent.png';
 
 export default class Bin extends Component {
   constructor(props) {
@@ -120,6 +122,7 @@ class BinNav extends Component {
   render () {
     return (
       <div className="bin-nav">
+        <Link to="/"><img className="codebin-logo" src={logo} alt="CodeBin"/></Link>
         <button className="btn btn-secondary">Bin Details</button>
         <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>{this.props.user.username ? 'Save Bin' : 'Sign Up & Save Bin'}</button>
         <button className="btn btn-secondary">Profile Pic</button>
