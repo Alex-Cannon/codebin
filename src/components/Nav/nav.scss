@@ -1,11 +1,44 @@
 @import '../../utils/_variables.scss';
 
 nav {
-  padding: 10px 0;
+  padding: 1rem;
   p {
-    margin: 15px 0;
+    display: block;
+    margin: 5px 0;
+    font-size: 1rem;
   }
   @media screen and (min-width: 768px) {
     min-height: 100vh;
   }
+}
+
+.mynav-btn {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: $gray-200;
+  font-weight: bold;
+  transition: 0.1s;
+  &:hover {
+    background: $gray-900;
+    color: $gray-200;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+.text-create {
+  color: lighten($cyan, 20%);
+}
+
+.text-your {
+  color: lighten($orange, 20%);
+}
+
+.text-build {
+  color: lighten($orange, 20%);
+}
+
+.text-explore {
+  color: lighten($purple, 20%);
 }

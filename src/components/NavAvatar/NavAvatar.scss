@@ -1,0 +1,42 @@
+@import '../../utils/_variables.scss';
+
+.navatar-container {
+  position: relative;
+}
+
+.navatar-img {
+  width: 45px;
+  margin-bottom: 4px;
+  border-radius: 3px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.navatar-img-active {
+  @extend .navatar-img;
+  margin: 0;
+  border-bottom: 4px solid $cyan;
+}
+
+.navatar-menu {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  z-index: 5;
+  display: inline-block;
+  width: 160px;
+  padding: 1em;
+  border-radius: 3px;
+  border-top: 3px solid $cyan;
+  background: $gray-800;
+  font-size: 1.1em;
+  a, a:hover {
+    display: block;
+    color: $gray-200;
+    font-weight: bold;
+  }
+  hr {
+    background: $gray-200;
+  }
+}

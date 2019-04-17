@@ -1,0 +1,20 @@
+.dash-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.dash-half {
+  width: 50%;
+  margin: 0;
+}
+
+.dash-form {
+  padding: 1em;
+  margin-bottom: 1em;
+  border-radius: 3px;
+  .input-group {
+    margin-bottom: 10px;
+  }
+}

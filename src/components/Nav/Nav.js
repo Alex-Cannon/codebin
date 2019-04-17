@@ -22,24 +22,24 @@ export default class Nav extends Component {
       <div className='col-sm-12 col-md-3 col-lg-2 navbar-container'>
         <nav>
           <h2><Link className="text-dark" to='/'>CodeBin</Link></h2>
-          <p>Create</p>
-          <Link className="btn btn-primary btn-block" to={'/bin/new'}>New Bin</Link>
+          <p className="text-create">CREATE</p>
+          <Link className="mynav-btn" to={'/bin/new'}>New Bin</Link>
           {username ? (
             <>
-              <p>Your</p>
-              <Link className="btn btn-primary btn-block" to={'/' + username + '/dashboard'}>Dashboard</Link>
-              <Link className="btn btn-primary btn-block" to={'/' + username + '/settings'}>Settings</Link>
-              <button className="btn btn-primary btn-block" onClick={this.logout.bind(this)}>Sign Out</button>
+              <p className="text-your">YOUR</p>
+              <Link className="mynav-btn" to={'/' + username + '/dashboard'}>Dashboard</Link>
+              <Link className="mynav-btn" to={'/' + username + '/settings'}>Settings</Link>
+              <span className="mynav-btn" onClick={this.logout.bind(this)}>Sign Out</span>
             </>
           ) : (
             <>
-              <p>Start Building</p>
-              <Link className="btn btn-primary btn-block" to="/signin">Sign In</Link>
-              <Link className="btn btn-primary btn-block" to="/signup">Sign Up</Link>
+              <p className="text-build">BUILD</p>
+              <Link className="mynav-btn" to="/signin">Sign In</Link>
+              <Link className="mynav-btn" to="/signup">Sign Up</Link>
             </>
           )}
-          <p>Explore</p>
-          <button className="btn btn-primary btn-block">Pens</button>
+          <p className="text-explore">EXPLORE</p>
+          <span className="mynav-btn">Pens</span>
         </nav>
       </div>
     );

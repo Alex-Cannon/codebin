@@ -1,7 +1,12 @@
 @import '../../utils/_variables.scss';
 
 .bin-thumb {
+  display: inline-block;
+  width: 100%;
   height: 20vh;
   border-radius: 5px;
-  margin: 0 -15px 10px 0;
+  margin: 7px;
+  @media screen and (min-width: $screen-sm) {
+    width: 300px;
+  }
 }

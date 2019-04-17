@@ -1,13 +1,28 @@
 .nav-top {
   display: flex;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
+  height: 60px;
+  > * {
+    margin-right: 5px;
+  }
 }
 
 .nav-top-search {
   flex: 8;
+  border-radius: 3px;
+  border: 0;
+  padding: 0 1em;
 }
 
 .nav-top-search-btn {
   flex: 1;
+}
+
+.nav-top-pic {
+  height: 40px;
+  border-radius: 3px;
+  &:hover {
+    cursor: pointer;
+  }
 }
