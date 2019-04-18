@@ -4,9 +4,8 @@ var passport = require('passport');
 router.post('/signin',
   passport.authenticate('local'),
   function (req, res) {
-    const { username } = req.user;
-    console.log(username);
-    return res.json({ username });
+    const { username, _id } = req.user;
+    return res.json({ username, _id });
   });
 
 module.exports = router;

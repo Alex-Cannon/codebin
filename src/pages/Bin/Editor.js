@@ -74,7 +74,18 @@ export default class Editor extends Component {
               onScroll={this.props.handleScroll.bind(this)}
               ref={this.props.editorTextarea}
               value={this.props[target]}
-              placeholder="Insert creativity hither!"
+              placeholder={(() => {
+                switch(this.props.target) {
+                  case 'html':
+                  return '<!DOCTYPE html><html>Your HTML goes here!</html>'
+                  case 'css':
+                  return 'CSS Power.'
+                  case 'js':
+                  return 'Do you even script?'
+                  default:
+                  return 'Insert Creativity Here.'
+                }
+              })()}
               autocomplete="off"
               autocorrect="off"
               autocapitalize="off"

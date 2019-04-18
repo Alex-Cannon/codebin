@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var ObjectID = require('mongodb').ObjectID;
 var Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
@@ -27,6 +28,7 @@ UserSchema.pre('save', function(next) {
 });
 
 var BinSchema = new Schema({
+  author: { required: true, type: ObjectID },
   name: { required: true, type: String },
   html: { type: String }, // Sanatize!
   css: { type: String }, // Sanatize!

@@ -5,14 +5,14 @@ var { postBin } = require('../../utils/utils.js');
 
 router.put('/bin', function (req, res) {
   const { _id, name, html, css, js } = req.body;
-  console.log(JSON.stringify({_id, name, html ,css, js}));
+  const author = req.user._id;
   if (_id === 'new') {
     postBin(req, (err, doc) => {
       if (err) { return err.handle(res); }
       return res.json(doc);
     });
   } else {
-    Bin.updateOne({ _id: new ObjectID(_id) }, { name, html, css, js }, (err) => {
+    Bin.updateOne({ _id: new ObjectID(_id) }, { name, html, css, js, author }, (err) => {
       if (err) { res.status(500).send(err); }
       return res.sendStatus(200);
     });  

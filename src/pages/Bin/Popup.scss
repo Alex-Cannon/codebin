@@ -1,0 +1,25 @@
+@import '../../utils/_variables.scss';
+
+.popup-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  padding: 5em 1em;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.details-modal {
+  position: static !important;
+  display: block !important;
+  width: 100%;
+  font-size: 1rem;
+  @media screen and (min-width: $screen-sm) {
+    width: 60%;
+    max-width: 700px;
+  }
+}

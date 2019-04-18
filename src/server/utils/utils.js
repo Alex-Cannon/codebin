@@ -21,7 +21,8 @@ module.exports = {
   postBin: (req, cb) => {
     if (req.user) {
       const { name, html, css, js } = req.body;
-      Bin.create({ name, html, css, js }, (err, doc) => {
+      const author = req.user._id;
+      Bin.create({ name, html, css, js, author }, (err, doc) => {
         if (err) { return cb({handle: (res) => res.status(500).send('Internal server error.')}, null) }
         if (!doc) { return cb({handle: (res) => res.status(400).send('Doc not found')}, null) }
         User.updateOne({ _id: new ObjectID(req.user._id) }, {$addToSet: {'bins': doc._id}}, (err) => {

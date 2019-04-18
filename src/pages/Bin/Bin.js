@@ -3,7 +3,10 @@ import history from '../../utils/history.js';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Editor from './Editor.js';
+import Navatar from '../../components/NavAvatar/NavAvatar.js';
 import './Bin.scss';
+import './Popup.scss';
+
 import logo from '../../assets/icons/codebin_logo_transparent.png';
 
 export default class Bin extends Component {
@@ -20,7 +23,8 @@ export default class Bin extends Component {
       scrollTop: 0,
       width: window.innerWidth > 768 ? window.innerWidth / 2 : window.innerWidth,
       dragging: false,
-      errMsg: ''
+      errMsg: '',
+      refreshCount: 0
     };
     this.editorTextarea = React.createRef();
   }
@@ -54,8 +58,7 @@ export default class Bin extends Component {
   }
 
   refreshIframe() {
-    let iframe = document.getElementById('editor-iframe');
-    iframe.src = iframe.src;
+    this.setState({ refreshCount: this.state.refreshCount + 1 });
   }
 
   handleChange(e) {
@@ -100,7 +103,7 @@ export default class Bin extends Component {
   render () {
     return (
       <div className='page-bin-wrapper' style={{cursor: this.state.dragging ? 'e-resize' : 'default'}}>
-        <BinNav {...this.props} handleSave={this.handleSave.bind(this)}/>
+        <BinNav {...this.props} {...this.state} handleSave={this.handleSave.bind(this)} handleChange={this.handleChange.bind(this)}/>
         <div className="bin-container">
           <Editor
             {...this.state}
@@ -122,10 +125,22 @@ class BinNav extends Component {
   render () {
     return (
       <div className="bin-nav">
-        <Link to="/"><img className="codebin-logo" src={logo} alt="CodeBin"/></Link>
-        <button className="btn btn-secondary">Bin Details</button>
-        <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>{this.props.user.username ? 'Save Bin' : 'Sign Up & Save Bin'}</button>
-        <button className="btn btn-secondary">Profile Pic</button>
+        <div className="bin-nav-left">
+          <Link to="/"><img className="codebin-logo" src={logo} alt="CodeBin"/></Link>
+          <input
+            className="bin-nav-name-input"
+            type="text"
+            name="name"
+            placeholder="Enter Bin Name"
+            value={this.props.name !== 'New Bin' ? this.props.name : ''}
+            onChange={this.props.handleChange.bind(this)}
+            autocomplete='off'
+          />
+        </div>
+        <div className="bin-nav-right">
+          <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>{this.props.user.username ? 'Save Bin' : 'Sign Up & Save Bin'}</button>
+          <Navatar {...this.props}/>
+        </div>
       </div>
     );
   }
@@ -139,7 +154,7 @@ class View extends Component {
     return (
       <div className="iframe-container" style={{width: window.innerWidth > 768 ? window.innerWidth - this.props.width : window.innerWidth}}>
         {this.props.dragging ? cover : ''}
-        <iframe className="iframe" id="editor-iframe" src={"http://localhost:81/api/bin/page/" + this.props._id} title="bin">
+        <iframe className="iframe" key={this.props.refreshCount} id="editor-iframe" src={"http://localhost:81/api/bin/page/" + this.props._id} title="bin">
         </iframe>
       </div>
     );

@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NavWrap from '../../components/NavWrap/NavWrap.js';
-import NavTop from '../../components/NavTop/NavTop.js';
 import Navatar from '../../components/NavAvatar/NavAvatar.js';
-import Thumb from '../../components/BinThumb/BinThumb.js';
+import axios from 'axios';
+import history from '../../utils/history.js';
 import './Dashboard.scss';
 
 export default class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      bins: []
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.user && this.props.user._id) {
+      axios.get(`/api/userbins/${this.props.user._id}${history.location.search}`)
+        .then((res) => {
+          this.setState({ bins: res.data });
+        })
+        .catch((err) => {
+          
+        });
+    }
+  }
+
   render () {
     return (
       <NavWrap {...this.props}>
@@ -28,44 +48,47 @@ export default class Dashboard extends Component {
                 </div>
               </div>
               <label>Sort By</label>
-              <div class="input-group">
-                <select class="custom-select" id="inputGroupSelect02">
+              <div className="input-group">
+                <select className="custom-select" id="inputGroupSelect02">
                   <option value="1" selected>Latest</option>
                   <option value="2">Oldest</option>
                   <option value="3">Likes</option>
                 </select>
               </div>
             </form>
+            <ul className="list-group">
+              {this.state.bins && this.state.bins.length > 0 ? this.state.bins.map((bin) => {
+                return (
+                  <Link to={`/bin/${bin._id}`} className="list-group-item d-flex justify-content-between align-items-center">
+                    {bin.name}
+                    <span className="badge badge-primary badge-pill">Likes - 10</span>
+                  </Link>
+                );
+              }) : 'Loading Bins...'}
+            </ul>
+            <br/>
             <div className="text-center">
-              <Thumb/>
-              <Thumb/>
-              <Thumb/>
-              <Thumb/>
-              <Thumb/>
-              <Thumb/>
-            </div>
-            <div className="text-center">
-              <ul class="pagination">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#">&laquo;</a>
+              <ul className="pagination">
+                <li className="page-item disabled">
+                  <Link className="page-link" to=''>&laquo;</Link>
                 </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
+                <li className="page-item active">
+                  <Link className="page-link" to=''>1</Link>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">2</a>
+                <li className="page-item">
+                  <Link className="page-link" to=''>2</Link>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">3</a>
+                <li className="page-item">
+                  <Link className="page-link" to=''>3</Link>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">4</a>
+                <li className="page-item">
+                  <Link className="page-link" to=''>4</Link>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">5</a>
+                <li className="page-item">
+                  <Link className="page-link" to=''>5</Link>
                 </li>
-                <li class="page-item">
-                  <a class="page-link" href="#">&raquo;</a>
+                <li className="page-item">
+                  <Link className="page-link" to=''>&raquo;</Link>
                 </li>
               </ul>
             </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import history from '../../utils/history.js';
+import { queryToObject } from '../../utils/helpers.js';
 import './signup.scss';
 import axios from 'axios';
 import AlertBox from '../../components/AlertBox/AlertBox.js';
@@ -34,7 +35,7 @@ class SignupForm extends Component {
       confirmPassword: '',
       message: '',
       type: '',
-      query: this.queryToObject()
+      query: queryToObject(history)
     }
   }
 
@@ -70,23 +71,6 @@ class SignupForm extends Component {
     let state = this.state;
     state[e.target.name] = e.target.value;
     this.setState(state);
-  }
-
-  queryToObject() {
-    let query = history.location.search.substr(1);
-    let obj = {};
-    let indexOf = query.indexOf('=');
-    while (indexOf !== -1) {
-      if (query.indexOf('&') !== -1) {
-        obj[query.substring(0, indexOf)] = query.substring(indexOf + 1, query.indexOf('&'));
-        query = query.substring(query.indexOf('&') + 1);
-      } else {
-        obj[query.substring(0, indexOf)] = query.substring(indexOf + 1);
-        query = '';
-      }
-      indexOf = query.indexOf('=');
-    }
-    return obj;
   }
 
   render () {

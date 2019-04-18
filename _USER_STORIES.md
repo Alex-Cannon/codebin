@@ -13,6 +13,7 @@
 
 #### Search
 * I can text search for Codebins
+* I can text search for my codebins
 
 #### Pages
 * Home

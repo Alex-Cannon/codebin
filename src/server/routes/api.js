@@ -6,10 +6,13 @@ const signin = require('./user/signin.js');
 const signout = require('./user/signout.js');
 const getUser = require('./user/getUser.js');
 
+// Bins
 const getBin = require('./bin/getBin.js');
 const getBinPage = require('./bin/getBinPage.js');
 const putBin = require('./bin/putBin.js');
+const getUserBins = require('./bin/userBins.js');
 
+// Other
 const signupandsave = require('./other/signupandsave.js');
 
 // API Endpoints
@@ -21,6 +24,7 @@ router.use(signupandsave);
 router.use(getUser);
 router.use(putBin);
 router.use(getBin);
+router.use(getUserBins);
 router.use(getBinPage);
 router.get('/getbin', function (req, res) {
   return res.send('<!DOCTYPE html><html><body>I am embedded!</body></html>');
