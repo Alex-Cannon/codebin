@@ -33,5 +33,14 @@ module.exports = {
     } else {
       cb({handle: (res) => res.status(401).send('Must be signed in to save bins.')}, null);
     }
+  },
+  validUsername(username) {
+    if (typeof username !== String) {
+      return false;
+    }
+    if (username.length < 6) {
+      return false;
+    }
+    return true;
   }
 }

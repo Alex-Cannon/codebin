@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import NavWrap from '../../components/NavWrap/NavWrap.js';
 import NavTop from '../../components/NavTop/NavTop.js';
+import AlertBox from '../../components/AlertBox/AlertBox.js';
+import axios from 'axios';
 import './Settings.scss';
 
 import castle from '../../assets/avatars/avatar-castle.png';
@@ -27,12 +29,39 @@ export default class Settings extends Component {
       username: '',
       password: '',
       passwordConfirm: '',
+      message: '',
+      type: '',
+      status: null,
       profilePic: this.props.user.profilePic
     };
   }
 
   handleChange(e) {
-    
+  }
+
+  getData() {
+    let out = {};
+    if (this.state.username !== '') {
+      out.username = this.state.username;
+    }
+    if (this.state.password !== '') {
+      out.password = this.state.password;
+    }
+    if (this.state.profilePic !== '') {
+      out.profilePic = this.state.profilePic;
+    }
+    return out;
+  }
+
+  handleSave(e) {
+    e.preventDefault();
+    axios.put('/api/edituser', this.getData())
+      .then(res => {
+        alert(JSON.stringify(res.data));
+      })
+      .catch(err => {
+        alert(JSON.stringify(err));
+      });
   }
 
   set(obj) {
@@ -52,7 +81,11 @@ export default class Settings extends Component {
                 <h4>Account</h4>
               </div>
               <div className="card-body">
-                <Form {...this.state} handleChange={this.handleChange.bind(this)} set={this.set.bind(this)}/>
+                <Form 
+                  {...this.state}
+                  handleChange={this.handleChange.bind(this)}
+                  handleSave={this.handleSave.bind(this)}
+                  set={this.set.bind(this)}/>
               </div>
             </div>
           </div>
@@ -65,8 +98,9 @@ export default class Settings extends Component {
 class Form extends Component {
   render () {
     return (
-      <form className="text-dark">
+      <form className="text-dark" onSubmit={this.props.handleSave.bind(this)}>
         <legend>Edit your account</legend>
+        <AlertBox {...this.props}/>
         <div className="form-group">
           <label>Username</label>
           <input type="text" className="form-control" name="username" onChange={this.props.handleChange.bind(this)} placeholder="Enter Username"/>
