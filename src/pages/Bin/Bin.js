@@ -19,18 +19,25 @@ export default class Bin extends Component {
       html: '',
       css: '',
       js: '',
+      author: '',
       target: 'html',
       scrollTop: 0,
       width: window.innerWidth > 768 ? window.innerWidth / 2 : window.innerWidth,
       dragging: false,
       errMsg: '',
-      refreshCount: 0
+      refreshCount: 0,
+      modalActive: false
     };
     this.editorTextarea = React.createRef();
   }
 
   changeTab(tab) {
     this.setState({target: tab});
+  }
+
+  toggleModal() {
+    let other = !this.state.modalActive;
+    this.setState({ modalActive : other });
   }
 
   handleSave() {
@@ -55,6 +62,16 @@ export default class Bin extends Component {
       });
     }
 
+  }
+
+  handleDelete() {
+    axios.delete('/api/deletebin', { data: { _id: this.state._id }})
+      .then(res => {
+        history.push(`/${this.props.user.username}/dashboard`);
+      })
+      .catch(err => {
+        alert(JSON.stringify(err));
+      });
   }
 
   refreshIframe() {
@@ -94,8 +111,11 @@ export default class Bin extends Component {
     if (_id !== 'new') {
       axios.get('/api/bin/' + _id)
       .then((res) => {
-        const { name, html, css, js } = res.data;
-        this.setState({ name, html, css, js });
+        const { name, html, css, js, author } = res.data;
+        this.setState({ name, html, css, js, author });
+      })
+      .catch((err) => {
+        history.push('/pageNotFound');
       });
     }
   }
@@ -103,7 +123,13 @@ export default class Bin extends Component {
   render () {
     return (
       <div className='page-bin-wrapper' style={{cursor: this.state.dragging ? 'e-resize' : 'default'}}>
-        <BinNav {...this.props} {...this.state} handleSave={this.handleSave.bind(this)} handleChange={this.handleChange.bind(this)}/>
+        <BinNav 
+          {...this.props}
+          {...this.state} 
+          handleSave={this.handleSave.bind(this)}
+          handleChange={this.handleChange.bind(this)}
+          toggleModal={this.toggleModal.bind(this)}
+        />
         <div className="bin-container">
           <Editor
             {...this.state}
@@ -116,6 +142,11 @@ export default class Bin extends Component {
           />
           <View {...this.state} dragging={this.state.dragging}/>
         </div>
+        <Popup
+          {...this.state}
+          toggleModal={this.toggleModal.bind(this)}
+          handleDelete={this.handleDelete.bind(this)}
+        />
       </div>
     );
   }
@@ -138,7 +169,12 @@ class BinNav extends Component {
           />
         </div>
         <div className="bin-nav-right">
-          <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>{this.props.user.username ? 'Save Bin' : 'Sign Up & Save Bin'}</button>
+          {this.props.author && this.props.author === this.props.user.username ? (
+            <>
+              <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>{this.props.user.username ? 'Save Bin' : 'Sign Up & Save Bin'}</button>
+              <button className="btn btn-secondary" onClick={this.props.toggleModal.bind(this)}>Bin Details</button>
+            </>
+          ) : ''}
           <Navatar {...this.props}/>
         </div>
       </div>
@@ -156,6 +192,44 @@ class View extends Component {
         {this.props.dragging ? cover : ''}
         <iframe className="iframe" key={this.props.refreshCount} id="editor-iframe" src={"http://localhost:81/api/bin/page/" + this.props._id} title="bin">
         </iframe>
+      </div>
+    );
+  }
+}
+
+class Popup extends Component {
+  render () {
+    if (!this.props.modalActive) {
+      return '';
+    }
+
+    return (
+      <div className="popup-container">
+        <div className="modal bin-modal" tabindex="-1" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Bin Details</h5>
+                <button type="button" className="close" onClick={this.props.toggleModal.bind(this)}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <p>Bin Details go here.</p>
+                <button className="btn btn-success">Save Bin</button>
+              </div>
+              <div className="modal-footer bin-modal-footer">
+                <label>Verify Bin name to Delete.</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter Bin Name"/>
+                  <div class="input-group-append">
+                  <button type="button" className="btn btn-danger" onClick={this.props.handleDelete.bind(this)}>Delete Bin</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

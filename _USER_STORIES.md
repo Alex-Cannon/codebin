@@ -8,7 +8,7 @@
 * I can C(RUD) my account
 
 #### Codebin
-* I can CRU(D) a Codebin live.
+* DONE I can CRUD a Codebin live.
 * I can edit anyone's Codebin live in my browser. This will NOT change a given Codebin.
 
 #### Search
@@ -27,4 +27,5 @@
 
 #### Bonus
 * I can share a codebin
-
+* I can like a bin
+* I can comment on a bin

@@ -1,10 +1,9 @@
 const router = require('express').Router();
-const { User } = require('../../utils/schema.js');
 
 router.get('/user', function (req, res) {
   if (req.user) {
-    const { username, _id } = req.user;
-    return res.json({ username, _id });  
+    const { username, _id, profilePic } = req.user;
+    return res.json({ username, _id, profilePic });
   }
   return res.status(401).send('Not Signed In.');
 });

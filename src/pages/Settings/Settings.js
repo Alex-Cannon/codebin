@@ -1,37 +1,42 @@
 import React, { Component } from 'react';
 import NavWrap from '../../components/NavWrap/NavWrap.js';
 import NavTop from '../../components/NavTop/NavTop.js';
-import './settings.scss';
+import './Settings.scss';
+
+import castle from '../../assets/avatars/avatar-castle.png';
+import cat from '../../assets/avatars/avatar-cat.png';
+import flower from '../../assets/avatars/avatar-flower.png';
+import goblin from '../../assets/avatars/avatar-goblin.png';
+import smiley from '../../assets/avatars/avatar-smiley.png';
+import smiley2 from '../../assets/avatars/avatar-smiley2.png';
+
+const names = {
+  'avatar-castle.png': castle,
+  'avatar-cat.png': cat,
+  'avatar-flower.png': flower,
+  'avatar-goblin.png': goblin,
+  'avatar-smiley.png': smiley,
+  'avatar-smiley2.png': smiley2
+};
 
 export default class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tab: 'profile',
+      username: '',
+      password: '',
+      passwordConfirm: '',
+      profilePic: this.props.user.profilePic
     };
   }
 
-  isActive(tab) {
-    return tab === this.state.tab ? ' active' : '';
+  handleChange(e) {
+    
   }
 
-  changeTab(tab) {
-    this.setState({ tab });
-  }
-
-  onChange(e) {
-
-  }
-
-  renderTab() {
-    switch (this.state.tab) {
-      case 'profile':
-      return <ProfileTab/>
-      case 'account':
-      return <AccountTab/>
-      default:
-      return <ProfileTab/>
-    }
+  set(obj) {
+    this.setState(obj);
   }
 
   render () {
@@ -42,22 +47,12 @@ export default class Settings extends Component {
             <NavTop {...this.props}/>
             <br/>
             <h3>Settings</h3>
-            <div className="card text-center">
+            <div className="card">
               <div className="card-header">
-                <ul className="nav nav-tabs card-header-tabs settings-tabs">
-                  <li className="nav-item" onClick={() => {this.changeTab('profile')}}>
-                    <span className={"nav-link" + this.isActive('profile')}>Profile</span>
-                  </li>
-                  <li className="nav-item" onClick={() => {this.changeTab('account')}}>
-                    <span className={"nav-link" + this.isActive('account')} >Account</span>
-                  </li>
-                  <li className="nav-item">
-                    <span className="nav-link disabled" tabindex="-1" aria-disabled="true">Editor</span>
-                  </li>
-                </ul>
+                <h4>Account</h4>
               </div>
               <div className="card-body">
-                {this.renderTab()}
+                <Form {...this.state} handleChange={this.handleChange.bind(this)} set={this.set.bind(this)}/>
               </div>
             </div>
           </div>
@@ -67,33 +62,34 @@ export default class Settings extends Component {
   }
 }
 
-class ProfileTab extends Component {
+class Form extends Component {
   render () {
     return (
-      <div>
-        <div className="card-body text-left">
-          <label>Avatar</label>
-          <label>Profile Name</label>
-          <label>Bio</label>
-          <label>Links</label>
-        </div>
-      </div>
-    );
-  }
-}
-
-class AccountTab extends Component {
-  render () {
-    return (
-      <div>
-        <div className="card-body text-left">
+      <form className="text-dark">
+        <legend>Edit your account</legend>
+        <div className="form-group">
           <label>Username</label>
-          <label>Password</label>
-          <label>Email</label>
-          <label>Delete Account</label>
+          <input type="text" className="form-control" name="username" onChange={this.props.handleChange.bind(this)} placeholder="Enter Username"/>
         </div>
-      </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input type="password" className="form-control" name="password" onChange={this.props.handleChange.bind(this)} placeholder="Enter Password"/>
+        </div>
+        <div className="form-group">
+          <label>Confirm Password</label>
+          <input type="password" className="form-control" name="password" onChange={this.props.handleChange.bind(this)} placeholder="Enter Password"/>
+        </div>
+        <div className="form-group">
+          <label for="exampleSelect1">Profile Picture</label><br/>
+          {Object.keys(names).map((key) => {
+            if (key === this.props.profilePic) {
+            return <img className="my-pic" src={names[key]} alt={key} key={key} />;
+            }
+            return <img className="profile-pic" src={names[key]} alt={key} key={key} onClick={() => {this.props.set({profilePic: key})}}/>;
+          })}
+        </div>
+        <button className="btn btn-success btn-block">Submit</button>
+      </form>
     );
   }
 }
-

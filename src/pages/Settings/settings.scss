@@ -5,3 +5,25 @@
     cursor: pointer;
   }
 }
+
+.profile-pic {
+  width: 50px;
+  border-radius: 3px;
+  margin: 10px;
+  &:hover {
+    cursor: pointer;
+    width: 60px;
+    border: 5px solid $blue;
+    margin: 5px;
+  }
+}
+
+.my-pic {
+  width: 60px;
+  border-radius: 3px;
+  border: 5px solid $green;
+  margin: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+}
