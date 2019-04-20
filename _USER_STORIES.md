@@ -5,12 +5,13 @@
 * DONE Email Auth
 * Google Auth
 * Facebook Auth
-* I can C(RUD) my account
+* I can CRU(D) my account
 * I am redirected to /signin after signing up
 
 #### Codebin
 * DONE I can CRUD a Codebin live.
 * When I delete a bin, the id is removed from the user bins
+* When I delete a bin, I must input the bin name.
 * I can edit anyone's Codebin live in my browser. This will NOT change a given Codebin.
 
 #### Search

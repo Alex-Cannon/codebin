@@ -15,8 +15,8 @@ class App extends Component {
     };
   }
 
-  set(obj) {
-    this.setState(obj);
+  set(obj, cb) {
+    this.setState(obj, cb);
   }
 
   componentWillMount() {

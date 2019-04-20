@@ -25,13 +25,13 @@ export default class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: 'profile',
       username: '',
       password: '',
       passwordConfirm: '',
       message: '',
       type: '',
       status: null,
+      activeBox: false,
       profilePic: this.props.user.profilePic
     };
   }
@@ -53,11 +53,25 @@ export default class Settings extends Component {
     return out;
   }
 
+  close() {
+    let other = !this.state.activeBox;
+    this.setState({ activeBox: other });
+  }
+
   handleSave(e) {
     e.preventDefault();
     axios.put('/api/edituser', this.getData())
       .then(res => {
-        alert(JSON.stringify(res.data));
+        let user = this.props.user;
+        let newFields = this.getData();
+        Object.keys(newFields).map((key) => {
+          user[key] = newFields[key];
+        });
+        this.setState({type: 'alert-success', message: 'Save Successful!', status: 200, activeBox: true}, () => {
+          window.setTimeout(() => {
+            this.props.set(user);
+          }, 1000);
+        });
       })
       .catch(err => {
         alert(JSON.stringify(err));
@@ -85,7 +99,9 @@ export default class Settings extends Component {
                   {...this.state}
                   handleChange={this.handleChange.bind(this)}
                   handleSave={this.handleSave.bind(this)}
-                  set={this.set.bind(this)}/>
+                  set={this.set.bind(this)}
+                  close={this.close.bind(this)}
+                />
               </div>
             </div>
           </div>
@@ -100,7 +116,7 @@ class Form extends Component {
     return (
       <form className="text-dark" onSubmit={this.props.handleSave.bind(this)}>
         <legend>Edit your account</legend>
-        <AlertBox {...this.props}/>
+        {this.props.activeBox ? <AlertBox {...this.props} close={this.props.close.bind(this)}/> : '' }
         <div className="form-group">
           <label>Username</label>
           <input type="text" className="form-control" name="username" onChange={this.props.handleChange.bind(this)} placeholder="Enter Username"/>

@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Avatar from '../../assets/avatars/avatar-castle.png';
+import castle from '../../assets/avatars/avatar-castle.png';
+import cat from '../../assets/avatars/avatar-cat.png';
+import flower from '../../assets/avatars/avatar-flower.png';
+import goblin from '../../assets/avatars/avatar-goblin.png';
+import smiley from '../../assets/avatars/avatar-smiley.png';
+import smiley2 from '../../assets/avatars/avatar-smiley2.png';
 import './NavAvatar.scss';
+
+let avatars = {
+  'avatar-castle.png': castle,
+  'avatar-cat.png': cat,
+  'avatar-flower.png': flower,
+  'avatar-goblin.png': goblin,
+  'avatar-smiley.png': smiley,
+  'avatar-smiley2.png': smiley2
+};
 
 export default class Navatar extends Component {
   constructor(props) {
@@ -20,7 +34,12 @@ export default class Navatar extends Component {
   render () {
     return (
       <div className="navatar-container">
-        <img className={this.state.active ? 'navatar-img-active' : 'navatar-img'} onClick={this.toggleNav.bind(this)} src={Avatar} alt="Profile"></img>
+        <img 
+          className={this.state.active ? 'navatar-img-active' : 'navatar-img'}
+          onClick={this.toggleNav.bind(this)}
+          src={this.props.user && this.props.user.profilePic ? avatars[this.props.user.profilePic] : castle}
+          alt="Profile"
+        />
         {this.state.active ? <NavatarMenu {...this.props}/> : ''}
       </div>
     );
