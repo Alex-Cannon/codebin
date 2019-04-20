@@ -78,6 +78,16 @@ export default class Settings extends Component {
       });
   }
 
+  handleDelete() {
+    axios.delete('/api/deleteuser')
+      .then((res) => {
+        alert(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }
+
   set(obj) {
     this.setState(obj);
   }
@@ -99,6 +109,7 @@ export default class Settings extends Component {
                   {...this.state}
                   handleChange={this.handleChange.bind(this)}
                   handleSave={this.handleSave.bind(this)}
+                  handleDelete={this.handleDelete.bind(this)}
                   set={this.set.bind(this)}
                   close={this.close.bind(this)}
                 />
@@ -114,7 +125,7 @@ export default class Settings extends Component {
 class Form extends Component {
   render () {
     return (
-      <form className="text-dark" onSubmit={this.props.handleSave.bind(this)}>
+      <form className="text-dark" onSubmit={(e) => e.preventDefault()}>
         <legend>Edit your account</legend>
         {this.props.activeBox ? <AlertBox {...this.props} close={this.props.close.bind(this)}/> : '' }
         <div className="form-group">
@@ -138,7 +149,8 @@ class Form extends Component {
             return <img className="profile-pic" src={names[key]} alt={key} key={key} onClick={() => {this.props.set({profilePic: key})}}/>;
           })}
         </div>
-        <button className="btn btn-success btn-block">Submit</button>
+        <button className="btn btn-success btn-block" onClick={this.props.handleSave.bind(this)}>Submit</button><br/>
+        <button className="btn btn-danger float-right" onClick={this.props.handleDelete.bind(this)}>Delete Account</button>
       </form>
     );
   }

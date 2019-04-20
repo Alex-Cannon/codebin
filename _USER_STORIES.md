@@ -5,7 +5,7 @@
 * DONE Email Auth
 * Google Auth
 * Facebook Auth
-* I can CRU(D) my account
+* DONE I can CRUD my account
 * I am redirected to /signin after signing up
 
 #### Codebin
