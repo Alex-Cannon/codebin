@@ -5,7 +5,7 @@
 * DONE Email Auth
 * DONE I can CRUD my account
 * DONE I am redirected to /signin after signing up
-* When I delete a user, all the associated bins are deleted.
+* DONE When I delete a user, all the associated bins are deleted.
 
 #### Codebin
 * DONE I can CRUD a Codebin live.

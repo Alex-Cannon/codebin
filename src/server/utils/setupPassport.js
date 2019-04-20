@@ -22,7 +22,7 @@ passport.serializeUser(function (user, done) {
 
 // user fetched from _id in session
 passport.deserializeUser(function (_id, done) {
-  User.findById(_id, function (err, user) {
+  User.findById(_id, {_id: 1, username: 1, profilePic: 1}, function (err, user) {
     done(err, user);
   });
 });
