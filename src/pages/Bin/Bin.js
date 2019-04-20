@@ -169,12 +169,12 @@ class BinNav extends Component {
           />
         </div>
         <div className="bin-nav-right">
-          {this.props.author && this.props.author === this.props.user.username ? (
+          {this.props._id === 'new' || (this.props.author && this.props.author === this.props.user._id) ? (
             <>
               <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>{this.props.user.username ? 'Save Bin' : 'Sign Up & Save Bin'}</button>
               <button className="btn btn-secondary" onClick={this.props.toggleModal.bind(this)}>Bin Details</button>
             </>
-          ) : ''}
+          ) : '' }
           <Navatar {...this.props}/>
         </div>
       </div>
