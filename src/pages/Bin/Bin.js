@@ -215,17 +215,10 @@ class Popup extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <p>Bin Details go here.</p>
-                <button className="btn btn-success">Save Bin</button>
+                Welcome to your bin details!
               </div>
-              <div className="modal-footer bin-modal-footer">
-                <label>Verify Bin name to Delete.</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Enter Bin Name"/>
-                  <div class="input-group-append">
-                  <button type="button" className="btn btn-danger" onClick={this.props.handleDelete.bind(this)}>Delete Bin</button>
-                  </div>
-                </div>
+              <div className="modal-footer text-right">
+                <button type="button" className="btn btn-danger" onClick={this.props.handleDelete.bind(this)}>Delete Bin</button>
               </div>
             </div>
           </div>
