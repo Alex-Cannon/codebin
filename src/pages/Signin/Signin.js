@@ -16,7 +16,6 @@ export default class Signin extends Component {
             <div className='card align-middle'>
               <div className='card-body text-dark'>
                 <h1>Sign In</h1>
-                <p>Sign In with your username or a service below.</p>
                 <SigninForm {...this.props}/>
               </div>
             </div>
@@ -79,8 +78,6 @@ class SigninForm extends Component {
         </div>
         <input type="submit" className="btn btn-primary btn-block"/><br/>
         <div className="text-center">
-          <p>Sign In with a service below:</p>
-          <p>Google or Github</p>
           <p>Don't have an account? <Link to="/signup">Sign Up here</Link>.</p>
         </div>
       </form>

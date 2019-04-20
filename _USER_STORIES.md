@@ -3,10 +3,9 @@
 #### User
 * DONE Sign up, in, out
 * DONE Email Auth
-* Google Auth
-* Facebook Auth
 * DONE I can CRUD my account
-* I am redirected to /signin after signing up
+* DONE I am redirected to /signin after signing up
+* When I delete a user, all the associated bins are deleted.
 
 #### Codebin
 * DONE I can CRUD a Codebin live.

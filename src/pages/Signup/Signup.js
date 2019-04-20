@@ -61,6 +61,7 @@ class SignupForm extends Component {
       axios.post('/api/signup', { username, password })
         .then((res) => {
           this.setState({message: 'Account added!', type: 'alert-success'});
+          history.push('/signin');
         }).catch((err) => {
           this.setState({message: err.response.data, type: 'alert-danger'});
         });
@@ -77,7 +78,6 @@ class SignupForm extends Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)}>
         <h1>Sign Up Today!</h1>
-        <p>Sign Up with a username or another service!</p>
         <AlertBox message={this.state.message} type={this.state.type} close={this.close.bind(this)}/>
         <div className="form-group">
           <label>Username</label>
@@ -93,8 +93,6 @@ class SignupForm extends Component {
         </div>
         <input type="submit" className="btn btn-primary btn-block"/><br/>
         <div className="text-center">
-          <p>Sign Up with a service below:</p>
-          <p>Google or Github</p>
           <p>Already have an account? <Link to="/signin">Sign In here</Link>.</p>
         </div>
       </form>
