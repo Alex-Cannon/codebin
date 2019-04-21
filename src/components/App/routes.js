@@ -17,5 +17,8 @@ module.exports = [{
   path: '/bin/:BIN_ID',
   component: require('../../pages/Bin/Bin.js').default
 }, {
+  path: '/search',
+  component: require('../../pages/Search/Search').default
+}, {
   component: require('../../pages/Page404/Page404.js').default
 }];

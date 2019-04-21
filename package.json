@@ -13,13 +13,15 @@
     "history": "^4.9.0",
     "mongodb": "^3.2.3",
     "mongoose": "^5.4.22",
+    "mongoose-regex-search": "^0.7.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "sanitize": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

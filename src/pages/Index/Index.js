@@ -43,9 +43,9 @@ export default class Home extends Component {
               {this.state.bins.map(bin => {
                 return (
                   <Link to={`/bin/${bin._id}`} className="list-group-item d-flex justify-content-between align-items-center">
-                  {bin.name}
-                  <span className="badge badge-primary badge-pill">Likes - 10</span>
-                </Link>
+                    {bin.name}
+                    <span className="badge badge-primary badge-pill">Likes - 10</span>
+                  </Link>
                 );
               })}
             </div>

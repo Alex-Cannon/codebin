@@ -39,7 +39,7 @@ export default class Nav extends Component {
             </>
           )}
           <p className="text-explore">EXPLORE</p>
-          <span className="mynav-btn">Pens</span>
+          <Link className="mynav-btn" to="/search">Bins</Link>
         </nav>
       </div>
     );

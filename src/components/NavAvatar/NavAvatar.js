@@ -59,7 +59,7 @@ class NavatarMenu extends Component {
         <Link to={this.isUser() ? `/${name}/settings` : '/signup' }>Settings</Link>
         <hr/>
         <Link to="/bin/new">New Bin</Link>
-        <Link to="/">Search Bins</Link>
+        <Link to="/search">Search Bins</Link>
       </div>
     );
   }
