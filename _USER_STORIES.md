@@ -12,16 +12,15 @@
 * DONE When I delete a bin, the id is removed from the user bins
 * When I delete a bin, I must input the bin name.
 * I can edit anyone's Codebin live in my browser. This will NOT change a given Codebin.
-* I can query through my bins
 
 #### Search
 * DONE I can text search for Codebins
-* I can text search for my codebins
+* DONE I can text search for my codebins
 
 #### Pages
 * DONE Home
 * Search
-* Dashboard
+* DONE Dashboard
 * DONE Settings
 * DONE Editor
 * DONE Sign up
@@ -29,3 +28,7 @@
 
 #### Bugs
 Editor: When I create a new bin as an auth user, the save button disappears.
+
+#### BONUS
+* Live/static preview thumbnails of bins
+* I can view another user's user page.

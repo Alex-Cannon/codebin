@@ -18,7 +18,7 @@ export default class NavTop extends Component {
         <input
           className="bg-light nav-top-search"
           type="search"
-          placeholder="Search Bins"
+          placeholder='Try "Super"'
           name="search"
           value={this.props.val || this.state.search}
           onChange={this.props.handleChange ? this.props.handleChange.bind(this) : (e) => this.setState({ search: e.target.value })}

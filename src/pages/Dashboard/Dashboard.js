@@ -11,8 +11,25 @@ export default class Dashboard extends Component {
     super(props);
 
     this.state = {
-      bins: []
+      bins: [],
+      search: ''
     };
+  }
+
+  search(e) {
+    e.preventDefault();
+
+    axios.get(`/api/search/mybins?search=${this.state.search}`)
+      .then(res => {
+        this.setState({ bins: res.data });
+      })
+      .catch(err => {
+        alert(err);
+      })
+  }
+
+  handleChange(e) {
+    this.setState({ search: e.target.value });
   }
 
   componentDidMount() {
@@ -39,21 +56,13 @@ export default class Dashboard extends Component {
                 <Navatar {...this.props}/>
               </div>
             </div>
-            <form className="dash-form bg-secondary text-dark">
+            <form className="dash-form bg-secondary text-dark" onSubmit={this.search.bind(this)}>
               <label>Search Bins</label>
               <div className="input-group">
-                <input type="text" className="form-control" placeholder="Enter Search" aria-label="Recipient's username" aria-describedby="search-btn"/>
+                <input type="text" className="form-control" placeholder="Enter Search" onChange={this.handleChange.bind(this)}/>
                 <div className="input-group-append">
-                  <button className="input-group-text" id="search-btn">Search</button>
+                  <button className="input-group-text bg-light" id="search-btn" onClick={this.search.bind(this)}>Search</button>
                 </div>
-              </div>
-              <label>Sort By</label>
-              <div className="input-group">
-                <select className="custom-select" id="inputGroupSelect02">
-                  <option value="1" selected>Latest</option>
-                  <option value="2">Oldest</option>
-                  <option value="3">Likes</option>
-                </select>
               </div>
             </form>
             <ul className="list-group">

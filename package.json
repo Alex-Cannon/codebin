@@ -13,7 +13,6 @@
     "history": "^4.9.0",
     "mongodb": "^3.2.3",
     "mongoose": "^5.4.22",
-    "mongoose-regex-search": "^0.7.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react": "^16.8.6",

@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var ObjectID = require('mongodb').ObjectID;
 var Schema = mongoose.Schema;
-var searchable = require('mongoose-regex-search');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
@@ -31,13 +30,11 @@ UserSchema.pre('save', function(next) {
 
 var BinSchema = new Schema({
   author: { required: true, type: ObjectID },
-  name: { required: true, type: String, searchable: true },
+  name: { required: true, type: String },
   html: { type: String }, // Sanatize!
   css: { type: String }, // Sanatize!
   js: { type: String } // Sanatize!
 }, { collection: 'bins' });
-
-BinSchema.plugin(searchable);
 
 module.exports = {
   User: mongoose.model('User', UserSchema),

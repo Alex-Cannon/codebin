@@ -6,7 +6,7 @@ router.get('/searchbins', (req, res) => {
     return res.sendStatus(400);
   }
 
-  Bin.search(new RegExp(String.raw`.*${req.query.search}.*/gi`), (err, bins) => {
+  Bin.find({ name: { $regex: new RegExp(`.*${req.query.search}.*`), $options: 'i' }}, { name: 1 }, (err, bins) => {
     if (err) { return res.sendStatus(500); }
     if (!bins) { return res.sendStatus(404); }
     return res.json(bins);
