@@ -26,7 +26,8 @@ export default class Bin extends Component {
       dragging: false,
       errMsg: '',
       refreshCount: 0,
-      modalActive: false
+      modalActive: false,
+      iframeTarget: 'http://localhost:81/api/bin/page/' + history.location.pathname.substr(history.location.pathname.lastIndexOf('/') + 1)
     };
     this.editorTextarea = React.createRef();
   }
@@ -42,10 +43,17 @@ export default class Bin extends Component {
 
   handleSave() {
     const { _id, name, html, css, js } = this.state;
-    if (!this.props.user.username) {
+    // ANYONE: Refresh BiN
+    if (_id !== 'new' && this.state.author && this.state.author !== this.props.user.username) {
+      this.setState({ iframeTarget: `http://localhost:81/api/genpage?html=${html}&css=${css}&js=${js}` });
+    }
+    // AUTHOR Unauthenticated: Save New Bin after Signup
+    else if (!this.props.user.username && _id === 'new') {
       this.props.set({ anonBin: { _id, name, html, css, js }});
       history.push('/signup?signupandsave=true');
-    } else {
+    }
+    // AUTHOR: Save/Add New Bin
+    else {
       axios.put('/api/bin', { _id, name, html, css, js  })
       .then((res) => {
         if (this.state._id === 'new') {
@@ -174,7 +182,11 @@ class BinNav extends Component {
               <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>{this.props.user.username ? 'Save Bin' : 'Sign Up & Save Bin'}</button>
               <button className="btn btn-secondary" onClick={this.props.toggleModal.bind(this)}>Bin Details</button>
             </>
-          ) : '' }
+          ) : this.props.author && this.props.author !== this.props.user._id ? (
+            <>
+              <button className="btn btn-success" onClick={this.props.handleSave.bind(this)}>Refresh Bin</button>
+            </>
+          ) : ''}
           <Navatar {...this.props}/>
         </div>
       </div>
@@ -190,7 +202,7 @@ class View extends Component {
     return (
       <div className="iframe-container" style={{width: window.innerWidth > 768 ? window.innerWidth - this.props.width : window.innerWidth}}>
         {this.props.dragging ? cover : ''}
-        <iframe className="iframe" key={this.props.refreshCount} id="editor-iframe" src={"http://localhost:81/api/bin/page/" + this.props._id} title="bin">
+        <iframe className="iframe" key={this.props.refreshCount} id="editor-iframe" src={this.props.iframeTarget} title="bin">
         </iframe>
       </div>
     );
