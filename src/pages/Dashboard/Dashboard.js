@@ -75,31 +75,6 @@ export default class Dashboard extends Component {
               }) : 'Loading Bins...'}
             </ul>
             <br/>
-            <div className="text-center">
-              <ul className="pagination">
-                <li className="page-item disabled">
-                  <Link className="page-link" to=''>&laquo;</Link>
-                </li>
-                <li className="page-item active">
-                  <Link className="page-link" to=''>1</Link>
-                </li>
-                <li className="page-item">
-                  <Link className="page-link" to=''>2</Link>
-                </li>
-                <li className="page-item">
-                  <Link className="page-link" to=''>3</Link>
-                </li>
-                <li className="page-item">
-                  <Link className="page-link" to=''>4</Link>
-                </li>
-                <li className="page-item">
-                  <Link className="page-link" to=''>5</Link>
-                </li>
-                <li className="page-item">
-                  <Link className="page-link" to=''>&raquo;</Link>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </NavWrap>

@@ -10,7 +10,6 @@
 #### Codebin
 * DONE I can CRUD a Codebin live.
 * DONE When I delete a bin, the id is removed from the user bins
-* When I delete a bin, I must input the bin name.
 * DONE I can edit anyone's Codebin live in my browser. This will NOT change a given Codebin.
 
 #### Search
@@ -19,7 +18,7 @@
 
 #### Pages
 * DONE Home
-* Search
+* DONE Search
 * DONE Dashboard
 * DONE Settings
 * DONE Editor
@@ -34,6 +33,8 @@ Editor: When I create a new bin as an auth user, the save button disappears.
 * UI Box -> "You should save!"
 * UX -> I must type my bin/username to delete my bin/account
 * UX -> I must confirm my password to change/add it
+* UX -> When I delete a bin, I must input the bin name.
+
 
 #### BONUS
 * Live/static preview thumbnails of bins

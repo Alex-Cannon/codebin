@@ -57,7 +57,7 @@ export default class Bin extends Component {
       axios.put('/api/bin', { _id, name, html, css, js  })
       .then((res) => {
         if (this.state._id === 'new') {
-          this.setState({ _id: res.data._id }, () => {
+          this.setState({ _id: res.data._id, author: this.props.user._id }, () => {
             history.push('/bin/' + res.data._id);
             this.refreshIframe();
           });
