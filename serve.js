@@ -9,7 +9,7 @@ const passport = require('passport');
 
 // Constants
 let app = express();
-const PORT = 80 || process.env.PORT;
+const PORT = process.env.PORT || 80;
 
 // Configure App
 app.use(bodyParser.json({ extended: false }));
