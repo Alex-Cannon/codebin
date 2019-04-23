@@ -26,15 +26,13 @@
 * DONE Sign in
 
 #### Bugs
-Editor: When I create a new bin as an auth user, the save button disappears.
+* DONE Editor: When I create a new bin as an auth user, the save button disappears.
 * UI Box -> "Must be signed in to save" for editor page
 * UI Box -> "Save successful"
 * UI Box -> "Save failed"
 * UI Box -> "You should save!"
-* UX -> I must type my bin/username to delete my bin/account
+* UX -> I must type my password to delete my account
 * UX -> I must confirm my password to change/add it
-* UX -> When I delete a bin, I must input the bin name.
-
 
 #### BONUS
 * Live/static preview thumbnails of bins

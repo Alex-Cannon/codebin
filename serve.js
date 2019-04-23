@@ -9,11 +9,12 @@ const passport = require('passport');
 
 // Constants
 let app = express();
-const PORT = 81 || process.env.API_PORT;
+const PORT = 80 || process.env.API_PORT;
 
 // Configure App
 app.use(bodyParser.json({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static('build'));
 
 // Connect to DB.
 mongoose.connection.on('open', () => {
@@ -26,10 +27,15 @@ mongoose.connection.on('open', () => {
   }));
   app.use(passport.initialize());
   app.use(passport.session());
-  require('./utils/setupPassport.js');
+  require('./src/server/utils/setupPassport.js');
 
   // Serve RESTful API
-  app.use('/api', require('./routes/api.js'));
+  app.use('/api', require('./src/server/routes/api.js'));
+
+  // Serve App
+  app.use('*', (req, res) => {
+    res.sendFile('./build/index.html');
+  });
 
   // Listen on PORT
   app.listen(PORT, () => console.log('App listening on port ' + PORT + '...'));
