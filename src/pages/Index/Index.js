@@ -35,7 +35,7 @@ export default class Home extends Component {
               <p>This is a side-projects intended for education. :)</p>
               <p class="lead">
                 <Link className="btn btn-success btn-lg" to="/signup">Sign Up</Link>
-                <Link className="btn btn-primary btn-lg" to="/signup">Sign In</Link>
+                <Link className="btn btn-primary btn-lg" to="/signin">Sign In</Link>
               </p>
             </div>
             <div className="codebins">

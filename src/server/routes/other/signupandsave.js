@@ -2,8 +2,6 @@ const router = require('express').Router();
 const { signup, postBin } = require('../../utils/utils.js');
 const { check } = require('express-validator/check');
 
-router.use(require('sanitize').middleware);
-
 router.post('/signupandsave', [
   check(['username', 'password', 'profilePic', 'name', 'author']).escape()
 ], (req, res) => {
