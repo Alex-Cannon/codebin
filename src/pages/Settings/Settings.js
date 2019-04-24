@@ -3,7 +3,7 @@ import NavWrap from '../../components/NavWrap/NavWrap.js';
 import NavTop from '../../components/NavTop/NavTop.js';
 import AlertBox from '../../components/AlertBox/AlertBox.js';
 import axios from 'axios';
-import './Settings.scss';
+import './settings.scss';
 
 import castle from '../../assets/avatars/avatar-castle.png';
 import cat from '../../assets/avatars/avatar-cat.png';
@@ -37,6 +37,7 @@ export default class Settings extends Component {
   }
 
   handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value});
   }
 
   getData() {

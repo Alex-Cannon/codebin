@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Editor from './Editor.js';
 import Navatar from '../../components/NavAvatar/NavAvatar.js';
-import './Bin.scss';
+import './bin.scss';
 import './Popup.scss';
 
 import logo from '../../assets/icons/codebin_logo_transparent.png';

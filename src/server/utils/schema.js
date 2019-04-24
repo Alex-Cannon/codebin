@@ -7,7 +7,6 @@ const SALT_WORK_FACTOR = 10;
 var UserSchema = new Schema({
   username: { required: true, type: String, unique: true },
   password: String, // Store as Bcrypt
-  authentication: Object, // { Google: {...}, Github: {...} }
   bins: Array, // Array of Bin _ids 
   profilePic: { type: String, default: 'avatar-castle.png'}
 }, { collection: 'users'});

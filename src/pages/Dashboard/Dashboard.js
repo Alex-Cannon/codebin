@@ -4,7 +4,7 @@ import NavWrap from '../../components/NavWrap/NavWrap.js';
 import Navatar from '../../components/NavAvatar/NavAvatar.js';
 import axios from 'axios';
 import history from '../../utils/history.js';
-import './Dashboard.scss';
+import './dashboard.scss';
 
 export default class Dashboard extends Component {
   constructor(props) {

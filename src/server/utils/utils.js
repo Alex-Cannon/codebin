@@ -35,7 +35,7 @@ module.exports = {
     }
   },
   validUsername(username) {
-    if (typeof username !== String) {
+    if (Object.prototype.toString.call(username) !== '[object String]') {
       return false;
     }
     if (username.length < 6) {
