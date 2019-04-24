@@ -7,10 +7,8 @@ const { check } = require('express-validator/check');
 router.put('/bin', [
   check(['name', 'author']).escape()
 ], function (req, res) {
-  console.log(name);
   req.sanitize(req.body.name);
   let { _id, name, html, css, js } = req.body;
-  console.log(name);
   const author = req.user._id;
   if (_id === 'new') {
     postBin(req, (err, doc) => {
