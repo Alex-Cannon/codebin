@@ -7,7 +7,6 @@ router.get('/bin/:ID', function (req, res) {
   if (_id === 'new' && _id.length === 24) {
     return res.send("I'm a new code bin!");
   }
-  console.log(_id);
 
   Bin.findOne({ _id: new ObjectID(_id) }, (err, doc) => {
     if (err) { return res.status(500).send(err) }

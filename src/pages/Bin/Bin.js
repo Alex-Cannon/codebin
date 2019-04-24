@@ -27,7 +27,7 @@ export default class Bin extends Component {
       errMsg: '',
       refreshCount: 0,
       modalActive: false,
-      iframeTarget: 'http://localhost:81/api/bin/page/' + history.location.pathname.substr(history.location.pathname.lastIndexOf('/') + 1)
+      iframeTarget: 'https://c0d3bin.herokuapp.com/api/bin/page/' + history.location.pathname.substr(history.location.pathname.lastIndexOf('/') + 1)
     };
     this.editorTextarea = React.createRef();
   }
