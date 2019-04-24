@@ -34,8 +34,8 @@ mongoose.connection.on('open', () => {
   app.use('/api', require('./src/server/routes/api.js'));
 
   // Serve App
-  app.use('*', (req, res) => {
-    res.sendFile('./build/index.html');
+  app.use('/*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './build/index.html'));
   });
 
   // Listen on PORT
