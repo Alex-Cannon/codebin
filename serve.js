@@ -2,6 +2,7 @@ require('dotenv').config();
 var mongoose = require('mongoose');
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
@@ -14,7 +15,7 @@ const PORT = process.env.PORT || 80;
 // Configure App
 app.use(bodyParser.json({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('build'));
+app.use(express.static('./build'));
 
 // Connect to DB.
 mongoose.connection.on('open', () => {
@@ -34,7 +35,7 @@ mongoose.connection.on('open', () => {
 
   // Serve App
   app.use('*', (req, res) => {
-    res.sendFile('./build/index.html');
+    res.sendFile(path.join(__dirname, './build/index.html'));
   });
 
   // Listen on PORT
