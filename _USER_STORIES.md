@@ -27,11 +27,12 @@
 
 #### Bugs
 * DONE Editor: When I create a new bin as an auth user, the save button disappears.
-* SECURITY -> User input MUST be sanatized.
+* DONE SECURITY -> User input MUST be sanatized.
 * UI Box -> "Must be signed in to save" for editor page
 * UI Box -> "Save successful"
 * UI Box -> "Save failed"
 * UI Box -> "You should save!"
+* UI -> editor can scroll on mobile.
 * UX -> I must type my password to delete my account
 * UX -> I must confirm my password to change/add it
 

@@ -44,8 +44,8 @@ export default class Bin extends Component {
   handleSave() {
     const { _id, name, html, css, js } = this.state;
     // ANYONE: Refresh BiN
-    if (_id !== 'new' && this.state.author && this.state.author !== this.props.user.username) {
-      this.setState({ iframeTarget: `http://localhost:81/api/genpage?html=${html}&css=${css}&js=${js}` });
+    if (_id !== 'new' && this.state.author && this.state.author !== this.props.user._id) {
+      this.setState({ iframeTarget: `https://c0d3bin.herokuapp.com/api/genpage?html=${html}&css=${css}&js=${js}` });
     }
     // AUTHOR Unauthenticated: Save New Bin after Signup
     else if (!this.props.user.username && _id === 'new') {
